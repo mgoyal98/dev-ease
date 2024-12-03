@@ -11,7 +11,7 @@ export function SidebarItemHeading({
 }) {
   return (
     <button
-      className='flex items-center justify-between w-full mt-3 px-5 text-zinc-500 mb-2 hover:text-zinc-600 hover:cursor-pointer transition-all duration-200'
+      className='flex items-center justify-between w-full mt-3 px-5 text-zinc-500 mb-2 hover:text-zinc-600 dark:hover:text-zinc-400 hover:cursor-pointer transition-all duration-200'
       onClick={onClick}
     >
       <h6 className='text-sm font-medium'>{label}</h6>

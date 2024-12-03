@@ -10,7 +10,9 @@ export default function MainLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(
+    localStorage.getItem(StorageKeys.SidebarOpen) === 'true'
+  );
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
@@ -37,6 +39,11 @@ export default function MainLayout({
       localStorage.setItem(StorageKeys.ColorMode, ColorModes.Light);
     }
   }, [isDarkMode]);
+
+  useEffect(() => {
+    localStorage.setItem(StorageKeys.SidebarOpen, isSidebarOpen.toString());
+  }, [isSidebarOpen]);
+
   return (
     <div className='flex'>
       <Sidebar isSidebarOpen={isSidebarOpen} />
