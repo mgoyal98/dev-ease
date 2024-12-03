@@ -1,14 +1,33 @@
+import { pageNav } from '@/app/common/constants';
 import Link from 'next/link';
-
-function SidebarItemHeading({ label }: { label: string }) {
-  return (
-    <div className='flex items-center px-5 text-zinc-500'>
-      <h6 className='text-sm font-medium'>{label}</h6>
-    </div>
-  );
-}
+import { usePathname } from 'next/navigation';
+import { SidebarItem, SidebarItemHeading } from './sidebar-items';
+import { StorageKeys } from '@/app/common/enums/storage-keys.enum';
+import { useState } from 'react';
 
 export default function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }) {
+  const [collapsedItems, setCollapsedItems] = useState<Record<string, boolean>>(
+    JSON.parse(localStorage.getItem(StorageKeys.SidebarCollapsedItems) || '{}')
+  );
+
+  const pathname = usePathname();
+
+  const toggleCollapsedItem = (itemId: string) => {
+    setCollapsedItems((prev) => {
+      const newCollapsedItems = {
+        ...prev,
+        [itemId]: !prev[itemId],
+      };
+
+      localStorage.setItem(
+        StorageKeys.SidebarCollapsedItems,
+        JSON.stringify(newCollapsedItems)
+      );
+
+      return newCollapsedItems;
+    });
+  };
+
   return (
     <nav
       className={`shrink-0 w-64 border-r ${isSidebarOpen ? 'block' : 'hidden'}`}
@@ -24,10 +43,42 @@ export default function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }) {
           </span>
         </div>
 
-        {/* Items Holder */}
+        {/* Navigation Holder */}
         <div className='flex-1 flex flex-col mt-4'>
-          {/* Items */}
-          <SidebarItemHeading label='Favorites' />
+          {/* Navigation */}
+          {pageNav.map((item, index) => {
+            if (!item.visibleOnSidebar) return null; // Skip items not visible on the sidebar
+
+            return (
+              <div key={`${item.name}-${index}`} className='w-full'>
+                {/* Section Heading */}
+                <SidebarItemHeading
+                  label={item.name}
+                  isOpen={!collapsedItems[item.id]}
+                  onClick={() => toggleCollapsedItem(item.id)}
+                />
+
+                {/* Sub-links */}
+                {!collapsedItems[item.id] && (
+                  <>
+                    {item.subLinks?.map((subItem, subIndex) => {
+                      if (!subItem.visibleOnSidebar) return null; // Skip invisible sub-links
+
+                      return (
+                        <SidebarItem
+                          key={`${subItem.name}-${subIndex}`}
+                          label={subItem.name}
+                          icon={subItem.icon}
+                          active={subItem.route === pathname}
+                          route={subItem.route}
+                        />
+                      );
+                    })}
+                  </>
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {/* Footer */}
@@ -35,7 +86,7 @@ export default function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }) {
           <span className='text-sm text-zinc-500'>
             &copy; {new Date().getFullYear()}{' '}
             <Link
-              href='https://madhur.dev'
+              href='https://mgoyal.com'
               className='text-emerald-500 font-medium hover:text-emerald-600 transition-colors duration-200'
               target='_blank'
             >
