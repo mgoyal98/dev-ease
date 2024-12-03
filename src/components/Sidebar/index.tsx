@@ -44,7 +44,7 @@ export default function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }) {
         </div>
 
         {/* Navigation Holder */}
-        <div className='flex-1 flex flex-col mt-4'>
+        <div className='flex-1 flex flex-col mt-4 overflow-y-scroll'>
           {/* Navigation */}
           {pageNav.map((item, index) => {
             if (!item.visibleOnSidebar) return null; // Skip items not visible on the sidebar
