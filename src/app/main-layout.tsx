@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import { ColorModes, StorageKeys } from './common/enums';
+import Header from '@/components/Header';
+import Sidebar from '@/components/Sidebar';
+import { ColorModes, StorageKeys } from '@/common/enums';
 
 export default function MainLayout({
   children,

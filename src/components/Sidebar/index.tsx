@@ -1,8 +1,8 @@
-import { pageNav } from '@/app/common/constants';
+import { pageNav } from '@/common/constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SidebarItem, SidebarItemHeading } from './sidebar-items';
-import { StorageKeys } from '@/app/common/enums/storage-keys.enum';
+import { StorageKeys } from '@/common/enums';
 import { useState } from 'react';
 
 export default function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }) {

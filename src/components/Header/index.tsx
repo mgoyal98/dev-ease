@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import HeaderIconButton from './icon-button';
-import { appRoutes } from '@/app/common/constants';
+import { appRoutes } from '@/common/constants';
 
 export default function Header({
   onToggleSidebar,
