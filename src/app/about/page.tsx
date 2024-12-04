@@ -51,8 +51,8 @@ export default function AboutPage() {
           <ul className='list-disc marker:text-emerald-500 pl-5 space-y-2'>
             <li>Built with Next.js, Tailwind CSS and Headless UI.</li>
             <li>Hosted and continuously deployed on AWS S3 and Cloudfront.</li>
-            <li>Uses AWS Route 53 for DNS and ACM for SSL/TLS certificates.</li>
-            <li>Uses GitHub Actions for CI/CD.</li>
+            <li>Used AWS Route 53 for DNS and ACM for SSL/TLS certificates.</li>
+            <li>Used GitHub Actions for CI/CD.</li>
             <li>
               Powered by various third-party open-source libraries (see the full
               list in the repository's{' '}
