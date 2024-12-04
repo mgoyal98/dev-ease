@@ -23,8 +23,8 @@ export default function AboutPage() {
         </CardHeader>
         <CardContent>
           <p className='mb-4'>
-            {appConfig.name} is a collection of powerful tools crafted with ❤️{' '}
-            by{' '}
+            <strong>{appConfig.name}</strong> is a collection of powerful tools
+            crafted with ❤️ by{' '}
             <ExternalLink
               href={getNavItemById('developer')?.externalLink ?? '/'}
             >
@@ -38,7 +38,13 @@ export default function AboutPage() {
             <strong>Open-source and free under the MIT license</strong>,{' '}
             {appConfig.name} is here to stay— but hosting and domain costs do
             add up. If you'd like to support this project and help expand its
-            range of tools, consider sponsoring here.
+            range of tools, consider sponsoring{' '}
+            <ExternalLink
+              href={getNavItemById('buy-me-coffee')?.externalLink ?? '/'}
+            >
+              here
+            </ExternalLink>
+            .
           </p>
         </CardContent>
       </Card>

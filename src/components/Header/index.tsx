@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import HeaderIconButton from './icon-button';
 import { appConfig } from '@/common/constants';
 import { getNavItemById } from '@/common/utils/nav.util';
+import Link from 'next/link';
 
 export default function Header({
   onToggleSidebar,
@@ -56,6 +57,14 @@ export default function Header({
           icon={isDarkMode ? 'fa-lightbulb-on' : 'fa-moon'}
           onClick={onToggleDarkMode}
         />
+
+        <Link
+          href={getNavItemById('buy-me-coffee')?.externalLink || ''}
+          target='_blank'
+          className='p-2 rounded-md h-9 font-medium flex items-center justify-center gap-1.5 transition-all duration-200 bg-slate-100 dark:bg-zinc-700 hover:bg-slate-200 dark:hover:bg-zinc-600'
+        >
+          <i className='fad fa-fw fa-mug-hot' /> Buy Me a Coffee
+        </Link>
       </div>
     </div>
   );

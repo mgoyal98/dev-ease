@@ -74,4 +74,14 @@ export const navItems: INavItem[] = [
     externalLink: 'https://mgoyal.com',
     visibleOnSidebar: false,
   },
+  {
+    id: 'buy-me-coffee',
+    category: navCategories.links.id,
+    icon: 'fad fa-mug-hot',
+    name: 'Buy Me a Coffee',
+    pageTitle: 'Buy Me a Coffee',
+    description: 'Support the development of this site',
+    externalLink: 'https://razorpay.me/@mgoyal',
+    visibleOnSidebar: false,
+  },
 ];

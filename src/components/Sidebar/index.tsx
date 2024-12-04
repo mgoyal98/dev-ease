@@ -40,10 +40,12 @@ export default function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }) {
 
   return (
     <nav
-      className={`shrink-0 w-64 border-r ${isSidebarOpen ? 'block' : 'hidden'}`}
+      className={`shrink-0 w-64 border-r dark:border-zinc-800 bg-white dark:bg-backgroundDark h-screen ${
+        isSidebarOpen ? 'block' : 'hidden'
+      }`}
     >
       <div
-        className={`bg-white dark:bg-backgroundDark dark:border-zinc-800 flex shrink-0 flex-col w-64 h-svh border-r fixed left-0 top-0 `}
+        className={`flex shrink-0 flex-col w-64 h-screen fixed left-0 top-0 `}
       >
         {/* Logo */}
         <Link href='/' className='flex items-center h-14 px-6 py-2'>

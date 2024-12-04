@@ -14,3 +14,14 @@
 body {
   font-family: var(--font-public-sans);
 }
+
+.fa-mug-hot {
+  --fa-primary-color: #f59e0b;
+  --fa-secondary-color: #b45309;
+  --fa-secondary-opacity: 0.6;
+}
+
+.dark .fa-mug-hot {
+  --fa-primary-color: #f59e0b;
+  --fa-secondary-color: white;
+}
