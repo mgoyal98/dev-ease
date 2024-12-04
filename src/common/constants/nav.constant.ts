@@ -1,21 +1,5 @@
 import UuidPage from '@/app/tools/uuid';
-
-export interface INavCategory {
-  id: string;
-  name: string;
-  route: string;
-  visibleOnSidebar: boolean;
-}
-
-export interface INavItem {
-  id: string;
-  category: string;
-  icon: string;
-  name: string;
-  route: string;
-  visibleOnSidebar: boolean;
-  page: () => React.JSX.Element;
-}
+import { INavCategory, INavItem } from '@/common/interfaces';
 
 export const navCategories: Record<string, INavCategory> = {
   generators: {
@@ -23,15 +7,18 @@ export const navCategories: Record<string, INavCategory> = {
     name: 'Generators',
     route: '/generators',
     visibleOnSidebar: true,
+    description: 'Generate data for your development needs.',
   },
 };
 
-export const pageNav: INavItem[] = [
+export const navItems: INavItem[] = [
   {
     id: 'uuid',
     category: navCategories.generators.id,
     icon: 'fa-hashtag',
     name: 'UUIDs',
+    pageTitle: 'UUID Generator',
+    description: 'Generate UUIDs of different versions and configurations.',
     route: `${navCategories.generators.route}/uuid`,
     visibleOnSidebar: true,
     page: UuidPage,

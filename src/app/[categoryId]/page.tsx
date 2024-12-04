@@ -1,4 +1,4 @@
-import { navCategories } from '@/common/constants';
+import { appConfig, navCategories } from '@/common/constants';
 import { getCategoryById } from '@/common/utils';
 import Content from '@/components/content';
 import PageTitle from '@/components/page-title';
@@ -38,8 +38,8 @@ export async function generateMetadata({ params }: CategoryPageProps) {
 
   // Metadata based on the category
   return {
-    title: `${categoryData.name} - EaseDev`,
-    description: `Generate ${categoryData.name} data.`,
+    title: `${categoryData.name} | ${appConfig.name}`,
+    description: categoryData.description,
   };
 }
 

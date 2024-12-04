@@ -1,1 +1,2 @@
-export * from './page-nav.constant';
+export * from './nav.constant';
+export * from './app.constant';

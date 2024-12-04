@@ -1,4 +1,4 @@
-import { pageNav } from '@/common/constants';
+import { appConfig, navItems } from '@/common/constants';
 import { getNavItemByCategoryAndTool, getNavItemById } from '@/common/utils';
 import Content from '@/components/content';
 import PageTitle from '@/components/page-title';
@@ -39,13 +39,13 @@ export async function generateMetadata({ params }: ToolPageProps) {
 
   // Metadata based on the category
   return {
-    title: `${tool.name} - EaseDev`,
-    description: `Generate ${tool.name} data.`,
+    title: `${tool.pageTitle} | ${appConfig.name}`,
+    description: tool.description,
   };
 }
 
 export async function generateStaticParams() {
-  const tools = pageNav.map((tool) => ({
+  const tools = navItems.map((tool) => ({
     categoryId: tool.category,
     toolId: tool.id,
   }));
