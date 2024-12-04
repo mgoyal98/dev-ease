@@ -1,4 +1,4 @@
-import { navCategories } from '@/common/constants';
+import { appConfig, navCategories } from '@/common/constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SidebarItem, SidebarItemHeading } from './sidebar-items';
@@ -45,12 +45,13 @@ export default function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }) {
         className={`bg-white dark:bg-backgroundDark dark:border-zinc-800 flex shrink-0 flex-col w-64 h-svh border-r fixed left-0 top-0 `}
       >
         {/* Logo */}
-        <div className='flex items-center h-14 px-6 py-2'>
-          <i className='far fa-code text-2xl mr-2'></i>
+        <Link href='/' className='flex items-center h-14 px-6 py-2'>
+          <i className='far fa-brackets-curly text-2xl mr-2'></i>
           <span className='text-xl font-bold'>
-            Dev<span className='text-emerald-500'>Ease</span>
+            {appConfig.firstName}
+            <span className='text-emerald-500'>{appConfig.lastName}</span>
           </span>
-        </div>
+        </Link>
 
         {/* Navigation Holder */}
         <div className='flex-1 flex flex-col mt-4 overflow-y-scroll'>
