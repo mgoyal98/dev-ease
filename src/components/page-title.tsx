@@ -3,7 +3,7 @@ export default function PageTitle({
   description,
 }: {
   title: string;
-  description: string;
+  description?: string;
 }) {
   return (
     <>
@@ -11,7 +11,9 @@ export default function PageTitle({
         {title}
       </h1>
       {description && (
-        <p className='text-sm text-slate-700 mb-5'>{description}</p>
+        <p className='text-sm text-slate-700 mb-5 dark:text-slate-300'>
+          {description}
+        </p>
       )}
     </>
   );

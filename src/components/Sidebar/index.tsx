@@ -5,6 +5,7 @@ import { SidebarItem, SidebarItemHeading } from './sidebar-items';
 import { StorageKeys } from '@/common/enums';
 import { useEffect, useState } from 'react';
 import { getNavItemsByCategory } from '@/common/utils';
+import ExternalLink from '@/components/external-link';
 
 export default function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }) {
   const [collapsedItems, setCollapsedItems] = useState<Record<string, boolean>>(
@@ -81,7 +82,7 @@ export default function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }) {
                             label={navItem.name}
                             icon={navItem.icon}
                             active={navItem.route === pathname}
-                            route={navItem.route}
+                            route={navItem.route ?? '/'}
                           />
                         );
                       }
@@ -97,13 +98,7 @@ export default function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }) {
         <div className='flex items-center justify-center h-14 px-6 py-2'>
           <span className='text-sm text-zinc-500'>
             &copy; {new Date().getFullYear()}{' '}
-            <Link
-              href='https://mgoyal.com'
-              className='text-emerald-500 font-medium hover:text-emerald-600 transition-colors duration-200'
-              target='_blank'
-            >
-              Madhur Goyal
-            </Link>
+            <ExternalLink href='https://mgoyal.com'>Madhur Goyal</ExternalLink>
           </span>
         </div>
       </div>
