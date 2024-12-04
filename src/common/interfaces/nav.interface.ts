@@ -13,7 +13,8 @@ export interface INavItem {
   name: string;
   pageTitle: string;
   description: string;
-  route: string;
+  route?: string;
   visibleOnSidebar: boolean;
-  page: () => React.JSX.Element;
+  page?: () => React.JSX.Element;
+  externalLink?: string;
 }

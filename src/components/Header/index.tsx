@@ -2,6 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 import HeaderIconButton from './icon-button';
+import { appConfig } from '@/common/constants';
+import { getNavItemById } from '@/common/utils/nav.util';
 
 export default function Header({
   onToggleSidebar,
@@ -34,6 +36,22 @@ export default function Header({
         </div>
       </div>
       <div className='flex items-center gap-2'>
+        <HeaderIconButton
+          icon={getNavItemById('github')?.icon || ''}
+          href={getNavItemById('github')?.externalLink || ''}
+          target='_blank'
+          type='link'
+        />
+        <HeaderIconButton
+          icon={getNavItemById('linkedin')?.icon || ''}
+          href={getNavItemById('linkedin')?.externalLink || ''}
+          target='_blank'
+          type='link'
+        />
+        <HeaderIconButton
+          icon={getNavItemById('about')?.icon || ''}
+          onClick={() => router.push(getNavItemById('about')?.route || '/')}
+        />
         <HeaderIconButton
           icon={isDarkMode ? 'fa-lightbulb-on' : 'fa-moon'}
           onClick={onToggleDarkMode}
