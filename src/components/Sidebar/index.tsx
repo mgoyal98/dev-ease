@@ -1,14 +1,23 @@
-import { pageNav } from '@/common/constants';
+import { navCategories } from '@/common/constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SidebarItem, SidebarItemHeading } from './sidebar-items';
 import { StorageKeys } from '@/common/enums';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getNavItemsByCategory } from '@/common/utils';
 
 export default function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }) {
   const [collapsedItems, setCollapsedItems] = useState<Record<string, boolean>>(
-    JSON.parse(localStorage.getItem(StorageKeys.SidebarCollapsedItems) || '{}')
+    {}
   );
+
+  useEffect(() => {
+    setCollapsedItems(
+      JSON.parse(
+        localStorage.getItem(StorageKeys.SidebarCollapsedItems) || '{}'
+      )
+    );
+  }, []);
 
   const pathname = usePathname();
 
@@ -46,34 +55,36 @@ export default function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }) {
         {/* Navigation Holder */}
         <div className='flex-1 flex flex-col mt-4 overflow-y-scroll'>
           {/* Navigation */}
-          {pageNav.map((item, index) => {
-            if (!item.visibleOnSidebar) return null; // Skip items not visible on the sidebar
+          {Object.values(navCategories).map((category, catIndex) => {
+            if (!category.visibleOnSidebar) return null; // Skip items not visible on the sidebar
 
             return (
-              <div key={`${item.name}-${index}`} className='w-full'>
+              <div key={`${category.id}-${catIndex}`} className='w-full'>
                 {/* Section Heading */}
                 <SidebarItemHeading
-                  label={item.name}
-                  isOpen={!collapsedItems[item.id]}
-                  onClick={() => toggleCollapsedItem(item.id)}
+                  label={category.name}
+                  isOpen={!collapsedItems[category.id]}
+                  onClick={() => toggleCollapsedItem(category.id)}
                 />
 
                 {/* Sub-links */}
-                {!collapsedItems[item.id] && (
+                {!collapsedItems[category.id] && (
                   <>
-                    {item.subLinks?.map((subItem, subIndex) => {
-                      if (!subItem.visibleOnSidebar) return null; // Skip invisible sub-links
+                    {getNavItemsByCategory(category.id).map(
+                      (navItem, navIndex) => {
+                        if (!navItem.visibleOnSidebar) return null; // Skip invisible sub-links
 
-                      return (
-                        <SidebarItem
-                          key={`${subItem.name}-${subIndex}`}
-                          label={subItem.name}
-                          icon={subItem.icon}
-                          active={subItem.route === pathname}
-                          route={subItem.route}
-                        />
-                      );
-                    })}
+                        return (
+                          <SidebarItem
+                            key={`${navItem.id}-${navIndex}`}
+                            label={navItem.name}
+                            icon={navItem.icon}
+                            active={navItem.route === pathname}
+                            route={navItem.route}
+                          />
+                        );
+                      }
+                    )}
                   </>
                 )}
               </div>

@@ -10,12 +10,12 @@ export default function MainLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(
-    localStorage.getItem(StorageKeys.SidebarOpen) === 'true'
-  );
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
+    setIsSidebarOpen(localStorage.getItem(StorageKeys.SidebarOpen) === 'true');
+
     // Check the user's preference from local storage
     const savedTheme = localStorage.getItem(StorageKeys.ColorMode);
     const prefersDark = window.matchMedia(

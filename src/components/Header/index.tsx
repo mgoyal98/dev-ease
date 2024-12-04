@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import HeaderIconButton from './icon-button';
-import { appRoutes } from '@/common/constants';
 
 export default function Header({
   onToggleSidebar,
@@ -23,12 +22,9 @@ export default function Header({
           icon={isSidebarOpen ? 'fa-outdent' : 'fa-indent'}
           onClick={onToggleSidebar}
         />
-        <HeaderIconButton
-          icon='fa-home'
-          onClick={() => router.push(appRoutes.home)}
-        />
+        <HeaderIconButton icon='fa-home' onClick={() => router.push('/')} />
 
-        <div className='flex items-center gap-2 bg-slate-100 dark:bg-zinc-700 h-full p-2 rounded-md'>
+        <div className='flex items-center gap-2 bg-slate-100 dark:bg-zinc-700 h-full px-2 py-1  rounded-md'>
           <i className='far fa-fw fa-search'></i>
           <input
             type='text'
