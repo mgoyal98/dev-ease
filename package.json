@@ -2,6 +2,10 @@
   "name": "dev-ease",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Madhur Goyal",
+    "email": "madhur.goyal@gmail.com"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
