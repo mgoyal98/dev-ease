@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import HeaderIconButton from './icon-button';
-import { appConfig } from '@/common/constants';
 import { getNavItemById } from '@/common/utils/nav.util';
 import Link from 'next/link';
 

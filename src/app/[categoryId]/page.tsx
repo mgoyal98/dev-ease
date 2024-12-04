@@ -27,8 +27,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   );
 }
 
-export const dynamicParams = true; // Allows dynamic route handling
-
 export async function generateMetadata({ params }: CategoryPageProps) {
   const { categoryId } = await params;
 

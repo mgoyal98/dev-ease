@@ -1,4 +1,4 @@
-import UuidPage from '@/app/tools/uuid';
+import UuidPage from '@/tools/uuid';
 import { INavCategory, INavItem } from '@/common/interfaces';
 import { appConfig } from './app.constant';
 

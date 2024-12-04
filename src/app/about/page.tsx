@@ -31,13 +31,13 @@ export default function AboutPage() {
               {appConfig.creator}
             </ExternalLink>
             , designed to make life easier for developers and IT professionals.
-            If you find these tools helpful, don't forget to bookmark them and
+            If you find these tools helpful, don&apos;t forget to bookmark them and
             share them with others who might benefit.
           </p>
           <p>
             <strong>Open-source and free under the MIT license</strong>,{' '}
             {appConfig.name} is here to stay— but hosting and domain costs do
-            add up. If you'd like to support this project and help expand its
+            add up. If you&apos;d like to support this project and help expand its
             range of tools, consider sponsoring{' '}
             <ExternalLink
               href={getNavItemById('buy-me-coffee')?.externalLink ?? '/'}
@@ -61,7 +61,7 @@ export default function AboutPage() {
             <li>Used GitHub Actions for CI/CD.</li>
             <li>
               Powered by various third-party open-source libraries (see the full
-              list in the repository's{' '}
+              list in the repository&apos;s{' '}
               <ExternalLink
                 href={`${
                   getNavItemById('github')?.externalLink ?? '/'
@@ -87,7 +87,7 @@ export default function AboutPage() {
               would be helpful.
             </li>
             <li>
-              <strong>Report an Issue:</strong> Let us know if something's
+              <strong>Report an Issue:</strong> Let us know if something&apos;s
               broken or not working as expected.
             </li>
           </ul>

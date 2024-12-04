@@ -1,3 +1,5 @@
+'use client';
+
 import { appConfig, navCategories } from '@/common/constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

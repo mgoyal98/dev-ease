@@ -23,8 +23,6 @@ export default async function ToolPage({ params }: ToolPageProps) {
   );
 }
 
-export const dynamicParams = true; // Allows dynamic route handling
-
 export async function generateMetadata({ params }: ToolPageProps) {
   const { toolId } = await params;
 
@@ -46,7 +44,7 @@ export async function generateMetadata({ params }: ToolPageProps) {
 }
 
 export async function generateStaticParams() {
-  const tools = navItems.map((tool) => ({
+  const tools = navItems.filter((tool) => tool.page).map((tool) => ({
     categoryId: tool.category,
     toolId: tool.id,
   }));

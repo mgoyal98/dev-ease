@@ -2,7 +2,6 @@ import { getAllCategories, getNavItemsByCategory } from '@/common/utils';
 import Content from '@/components/content';
 import PageTitle from '@/components/page-title';
 import ToolCard from '@/components/tool-card';
-import Image from 'next/image';
 
 export default function Home() {
   return (

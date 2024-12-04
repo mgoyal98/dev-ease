@@ -1,7 +1,7 @@
-import { navCategories, navItems } from '../constants';
+import { navCategories, navItems } from '@/common/constants';
 
 export function getCategoryById(id: string) {
-  return navCategories[id as keyof typeof navCategories];
+  return navCategories[id];
 }
 
 export function getAllCategories(all = false) {
@@ -22,6 +22,6 @@ export function getNavItemById(id: string) {
 
 export function getNavItemByCategoryAndTool(category: string, tool: string) {
   return navItems.find(
-    (item) => item.category === category && item.id === tool
+    (item) => item.category === category && item.id === tool && item.page
   );
 }
