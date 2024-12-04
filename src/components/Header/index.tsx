@@ -51,7 +51,8 @@ export default function Header({
         />
         <HeaderIconButton
           icon={getNavItemById('about')?.icon || ''}
-          onClick={() => router.push(getNavItemById('about')?.route || '/')}
+          type='link'
+          href={getNavItemById('about')?.route || '/'}
         />
         <HeaderIconButton
           icon={isDarkMode ? 'fa-lightbulb-on' : 'fa-moon'}
