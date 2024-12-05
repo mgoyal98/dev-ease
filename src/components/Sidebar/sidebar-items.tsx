@@ -44,7 +44,7 @@ export function SidebarItem({
           : ''
       }`}
     >
-      <i className={`far fa-fw ${icon}`}></i>
+      <i className={`${icon}`}></i>
       {label}
     </Link>
   );

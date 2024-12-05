@@ -24,7 +24,7 @@ export const navItems: INavItem[] = [
   {
     id: 'uuid',
     category: navCategories.generators.id,
-    icon: 'fa-hashtag',
+    icon: 'far fa-fw fa-hashtag',
     name: 'UUIDs',
     pageTitle: 'UUID Generator',
     description: 'Generate UUIDs of different versions and configurations.',
