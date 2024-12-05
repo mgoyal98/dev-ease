@@ -9,7 +9,13 @@ import { useEffect, useState } from 'react';
 import { getNavItemsByCategory } from '@/common/utils';
 import ExternalLink from '@/components/external-link';
 
-export default function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }) {
+export default function Sidebar({
+  isSidebarOpen,
+  onToggleSidebar,
+}: {
+  isSidebarOpen: boolean;
+  onToggleSidebar: () => void;
+}) {
   const [collapsedItems, setCollapsedItems] = useState<Record<string, boolean>>(
     {}
   );
@@ -42,12 +48,14 @@ export default function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }) {
 
   return (
     <nav
-      className={`shrink-0 w-64 border-r dark:border-zinc-800 bg-white dark:bg-backgroundDark h-screen ${
-        isSidebarOpen ? 'block' : 'hidden'
+      className={`shrink-0 w-64 absolute top-0 h-full  ${
+        isSidebarOpen ? 'left-0 lg:relative' : '-left-64 lg:hidden'
       }`}
     >
       <div
-        className={`flex shrink-0 flex-col w-64 h-screen fixed left-0 top-0 `}
+        className={`z-20 flex shrink-0 flex-col w-64 h-full border-r dark:border-zinc-800 bg-white dark:bg-backgroundDark fixed lg:left-0 top-0 transition-all duration-300 ${
+          isSidebarOpen ? 'left-0' : '-left-64 lg:hidden'
+        }`}
       >
         {/* Logo */}
         <Link href='/' className='flex items-center h-14 px-6 py-2'>
@@ -106,6 +114,12 @@ export default function Sidebar({ isSidebarOpen }: { isSidebarOpen: boolean }) {
           </span>
         </div>
       </div>
+      {isSidebarOpen && (
+        <div
+          className='fixed lg:hidden w-full h-full top-0 left-0 bg-black/50 z-10 cursor-pointer'
+          onClick={onToggleSidebar}
+        ></div>
+      )}
     </nav>
   );
 }
