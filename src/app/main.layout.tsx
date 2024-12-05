@@ -10,7 +10,7 @@ export default function MainLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
@@ -47,12 +47,16 @@ export default function MainLayout({
     localStorage.setItem(StorageKeys.SidebarOpen, isSidebarOpen.toString());
   }, [isSidebarOpen]);
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev);
+  };
+
   return (
     <div className='flex'>
-      <Sidebar isSidebarOpen={isSidebarOpen} />
+      <Sidebar isSidebarOpen={isSidebarOpen} onToggleSidebar={toggleSidebar} />
       <div className='flex-1 flex-col'>
         <Header
-          onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)}
+          onToggleSidebar={toggleSidebar}
           isSidebarOpen={isSidebarOpen}
           isDarkMode={isDarkMode}
           onToggleDarkMode={() => setIsDarkMode((prev) => !prev)}

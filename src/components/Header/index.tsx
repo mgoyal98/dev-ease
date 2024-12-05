@@ -26,12 +26,12 @@ export default function Header({
         />
         <HeaderIconButton icon='fa-home' onClick={() => router.push('/')} />
 
-        <div className='flex items-center gap-2 bg-slate-100 dark:bg-zinc-700 h-full px-2 py-1  rounded-md'>
+        <div className='flex items-center gap-2 bg-slate-100 dark:bg-zinc-700 h-full px-2 py-1 rounded-md'>
           <i className='far fa-fw fa-search'></i>
           <input
             type='text'
             placeholder='Search'
-            className='bg-transparent outline-none'
+            className='bg-transparent outline-none hidden sm:block'
           />
         </div>
       </div>
@@ -63,7 +63,8 @@ export default function Header({
           target='_blank'
           className='p-2 rounded-md h-9 font-medium flex items-center justify-center gap-1.5 transition-all duration-200 bg-slate-100 dark:bg-zinc-700 hover:bg-slate-200 dark:hover:bg-zinc-600'
         >
-          <i className='fad fa-fw fa-mug-hot' /> Buy Me a Coffee
+          <i className='fad fa-fw fa-mug-hot' />
+          <span className='hidden md:block'>Buy Me a Coffee</span>
         </Link>
       </div>
     </div>

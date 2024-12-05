@@ -12,7 +12,7 @@ export default function ToolCard(tool: INavItem) {
         <CardContent>
           <div className='flex flex-row gap-6'>
             <div className='flex flex-row items-center justify-center'>
-              <i className={`text-4xl ${tool.icon}`} />
+              <i className={`text-3xl ${tool.icon}`} />
             </div>
             <div className='flex flex-col gap-1.5'>
               <h3 className='text-lg font-bold'>{tool.name}</h3>
