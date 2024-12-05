@@ -31,14 +31,14 @@ export default function AboutPage() {
               {appConfig.creator}
             </ExternalLink>
             , designed to make life easier for developers and IT professionals.
-            If you find these tools helpful, don&apos;t forget to bookmark them and
-            share them with others who might benefit.
+            If you find these tools helpful, don&apos;t forget to bookmark them
+            and share them with others who might benefit.
           </p>
           <p>
             <strong>Open-source and free under the MIT license</strong>,{' '}
             {appConfig.name} is here to stay— but hosting and domain costs do
-            add up. If you&apos;d like to support this project and help expand its
-            range of tools, consider sponsoring{' '}
+            add up. If you&apos;d like to support this project and help expand
+            its range of tools, consider sponsoring{' '}
             <ExternalLink
               href={getNavItemById('buy-me-coffee')?.externalLink ?? '/'}
             >
@@ -56,8 +56,7 @@ export default function AboutPage() {
         <CardContent>
           <ul className='list-disc marker:text-emerald-500 pl-5 space-y-2'>
             <li>Built with Next.js, Tailwind CSS and Headless UI.</li>
-            <li>Hosted and continuously deployed on AWS S3 and Cloudfront.</li>
-            <li>Used AWS Route 53 for DNS and ACM for SSL/TLS certificates.</li>
+            <li>Used Vercel for hosting and continuous deployment.</li>
             <li>Used GitHub Actions for CI/CD.</li>
             <li>
               Powered by various third-party open-source libraries (see the full
