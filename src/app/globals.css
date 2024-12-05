@@ -1,4 +1,4 @@
-@import url('https://kit.fontawesome.com/b5dc24240f.css');
+@import '@/assets/fonts/font-awesome/css/all.min.css';
 
 @tailwind base;
 @tailwind components;
