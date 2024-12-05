@@ -14,7 +14,10 @@ export default function MainLayout({
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    setIsSidebarOpen(localStorage.getItem(StorageKeys.SidebarOpen) === 'true');
+    const savedSidebarOpen = localStorage.getItem(StorageKeys.SidebarOpen);
+    setIsSidebarOpen(
+      savedSidebarOpen?.length ? savedSidebarOpen === 'true' : true
+    );
 
     // Check the user's preference from local storage
     const savedTheme = localStorage.getItem(StorageKeys.ColorMode);
