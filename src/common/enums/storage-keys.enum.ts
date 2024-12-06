@@ -3,4 +3,5 @@ export enum StorageKeys {
   SidebarCollapsedItems = 'sidebar-collapsed-items',
   SidebarOpen = 'sidebar-open',
   UuidConfigs = 'uuid-configs',
+  JsonFormatterConfigs = 'json-formatter-configs',
 }

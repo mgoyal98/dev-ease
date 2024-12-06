@@ -26,14 +26,15 @@ export default function Header({
         />
         <HeaderIconButton icon='fa-home' onClick={() => router.push('/')} />
 
-        <div className='flex items-center gap-2 bg-slate-100 dark:bg-zinc-700 h-full px-2 py-1 rounded-md'>
+        {/* TODO: Add search */}
+        {/* <div className='flex items-center gap-2 bg-slate-100 dark:bg-zinc-700 h-full px-2 py-1 rounded-md'>
           <i className='far fa-fw fa-search'></i>
           <input
             type='text'
             placeholder='Search'
             className='bg-transparent outline-none hidden sm:block'
           />
-        </div>
+        </div> */}
       </div>
       <div className='flex items-center gap-2'>
         <HeaderIconButton
