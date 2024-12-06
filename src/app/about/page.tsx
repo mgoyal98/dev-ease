@@ -104,7 +104,7 @@ export default function AboutPage() {
       </Card>
 
       <p className='mb-4 mt-5 text-center'>
-        ✨ <strong>{appConfig.name}</strong>: Your go-to toolkit for smoother
+        🚀 <strong>{appConfig.name}</strong>: Your go-to toolkit for smoother
         development.
       </p>
     </Content>
