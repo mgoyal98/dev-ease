@@ -1,6 +1,7 @@
 import UuidPage from '@/tools/uuid';
 import { INavCategory, INavItem } from '@/common/interfaces';
 import { appConfig } from './app.constant';
+import JsonFormatterTool from '@/tools/json-formatter';
 
 export const navCategories: Record<string, INavCategory> = {
   generators: {
@@ -9,6 +10,13 @@ export const navCategories: Record<string, INavCategory> = {
     route: '/generators',
     visibleOnSidebar: true,
     description: 'Generate data for your development needs.',
+  },
+  formatters: {
+    id: 'formatters',
+    name: 'Formatters',
+    route: '/formatters',
+    visibleOnSidebar: true,
+    description: 'Format data for your development needs.',
   },
   links: {
     id: 'links',
@@ -31,6 +39,19 @@ export const navItems: INavItem[] = [
     route: `${navCategories.generators.route}/uuid`,
     visibleOnSidebar: true,
     page: UuidPage,
+  },
+
+  // formatters
+  {
+    id: 'json-formatter',
+    category: navCategories.formatters.id,
+    icon: 'far fa-fw fa-brackets-curly',
+    name: 'JSON Formatter',
+    pageTitle: 'JSON Formatter And Minifier',
+    description: 'Format and minify JSON data.',
+    route: `${navCategories.formatters.route}/json-formatter`,
+    visibleOnSidebar: true,
+    page: JsonFormatterTool,
   },
 
   // links
