@@ -1,7 +1,7 @@
 'use client';
 
 import { StorageKeys } from '@/common/enums/storage-keys.enum';
-import { handleCopy } from '@/common/utils/copy.util';
+import { handleCopy, handleDownload, handlePaste } from '@/common/utils';
 import PrimaryButton from '@/components/buttons/primary';
 import SecondaryButton from '@/components/buttons/secondary';
 import {
@@ -17,7 +17,7 @@ import { ConfigurationItem } from '@/components/configuration-item';
 import SelectBox from '@/components/forms/select-box';
 import Textarea from '@/components/forms/textarea';
 import Toggle from '@/components/forms/toggle';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 interface JsonFormatterConfigs {
   indentation: string;
@@ -26,7 +26,7 @@ interface JsonFormatterConfigs {
 }
 
 const DEFAULT_CONFIGS: JsonFormatterConfigs = {
-  indentation: '2',
+  indentation: '4',
   sortKeys: false,
   input: '{"name":"DevEase","age":1,"isAdmin":false}',
 };
@@ -50,13 +50,13 @@ export default function JsonFormatterTool() {
     }
   }, []);
 
-  function sortObjectKeys<T>(obj: T): T {
+  const sortObjectKeys = useCallback((obj: unknown): unknown => {
     if (typeof obj !== 'object' || obj === null) {
       return obj;
     }
 
     if (Array.isArray(obj)) {
-      return obj.map(sortObjectKeys) as T;
+      return obj.map(sortObjectKeys) as unknown;
     }
 
     return Object.keys(obj)
@@ -64,30 +64,33 @@ export default function JsonFormatterTool() {
       .reduce((sortedObj, key) => {
         sortedObj[key] = sortObjectKeys((obj as Record<string, unknown>)[key]);
         return sortedObj;
-      }, {} as Record<string, unknown>) as T;
-  }
+      }, {} as Record<string, unknown>) as unknown;
+  }, []);
 
-  const formatJson = (configs: JsonFormatterConfigs) => {
-    if (!configs.input) {
-      setOutputJson('');
-      return;
-    }
+  const formatJson = useCallback(
+    (configs: JsonFormatterConfigs) => {
+      if (!configs.input) {
+        setOutputJson('');
+        return;
+      }
 
-    try {
-      const parsedObject = JSON.parse(configs.input);
-      const sortedObject = configs.sortKeys
-        ? sortObjectKeys(parsedObject)
-        : parsedObject;
-      const formattedJson = JSON.stringify(
-        sortedObject,
-        null,
-        INDENTATIONS.find((i) => i.value === configs.indentation)?.indentation
-      );
-      setOutputJson(formattedJson);
-    } catch (error: unknown) {
-      setOutputJson((error as Error).message);
-    }
-  };
+      try {
+        const parsedObject = JSON.parse(configs.input);
+        const sortedObject = configs.sortKeys
+          ? sortObjectKeys(parsedObject)
+          : parsedObject;
+        const formattedJson = JSON.stringify(
+          sortedObject,
+          null,
+          INDENTATIONS.find((i) => i.value === configs.indentation)?.indentation
+        );
+        setOutputJson(formattedJson);
+      } catch (error: unknown) {
+        setOutputJson((error as Error).message);
+      }
+    },
+    [sortObjectKeys]
+  );
 
   useEffect(() => {
     localStorage.setItem(
@@ -95,7 +98,11 @@ export default function JsonFormatterTool() {
       JSON.stringify(configs)
     );
     formatJson(configs);
-  }, [configs]);
+  }, [configs, formatJson]);
+
+  const handleInputChange = (value: string) => {
+    setConfigs((prev) => ({ ...prev, input: value }));
+  };
 
   return (
     <div>
@@ -145,18 +152,22 @@ export default function JsonFormatterTool() {
         </CardFooter>
       </Card>
 
-      <div className='mt-5 grid grid-cols-1 md:grid-cols-2 gap-4'>
+      <div className='mt-5 grid grid-cols-1 lg:grid-cols-2 gap-4'>
         {/* Input */}
         <Card className='mt-5'>
           <CardHeader>
             <CardTitle>Input</CardTitle>
+            <CardActions>
+              <CardActionButton onClick={() => handlePaste(handleInputChange)}>
+                <i className='far fa-fw fa-paste'></i>
+                Paste
+              </CardActionButton>
+            </CardActions>
           </CardHeader>
           <CardContent>
             <Textarea
               value={configs.input}
-              onChange={(value) =>
-                setConfigs((prev) => ({ ...prev, input: value }))
-              }
+              onChange={handleInputChange}
               rows={30}
             />
           </CardContent>
@@ -171,11 +182,18 @@ export default function JsonFormatterTool() {
                 <i className='far fa-fw fa-copy'></i>
                 Copy
               </CardActionButton>
+              <CardActionButton
+                onClick={() =>
+                  handleDownload(outputJson, 'formatted-json.json')
+                }
+              >
+                <i className='far fa-fw fa-save leading-5'></i>
+              </CardActionButton>
             </CardActions>
           </CardHeader>
           <CardContent>
             <div className='flex w-full'>
-              <Textarea value={outputJson} disabled={true} rows={30} />
+              <Textarea value={outputJson} readonly={true} rows={30} />
             </div>
           </CardContent>
         </Card>

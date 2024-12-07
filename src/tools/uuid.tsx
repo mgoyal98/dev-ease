@@ -19,6 +19,7 @@ import SelectBox from '@/components/forms/select-box';
 import Textarea from '@/components/forms/textarea';
 import Toggle from '@/components/forms/toggle';
 import { v1, v4, v6, v7 } from 'uuid';
+import { handleCopy, handleDownload } from '@/common/utils';
 
 const UUID_VERSIONS = [
   { text: 'v1', value: '1', fn: v1 },
@@ -107,10 +108,6 @@ export default function UuidPage() {
     return parsedValue;
   };
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(generatedUUIDs);
-  };
-
   return (
     <div>
       {/* Configuration */}
@@ -190,9 +187,15 @@ export default function UuidPage() {
               {/* <CardActionButton onClick={handleSave}>
                 <i className='far fa-fw fa-save size-5 flex items-center justify-center'></i>
               </CardActionButton> */}
-              <CardActionButton onClick={handleCopy}>
+              <CardActionButton onClick={() => handleCopy(generatedUUIDs)}>
                 <i className='far fa-fw fa-copy'></i>
                 Copy
+              </CardActionButton>
+
+              <CardActionButton
+                onClick={() => handleDownload(generatedUUIDs, 'uuids.txt')}
+              >
+                <i className='far fa-fw fa-save leading-5'></i>
               </CardActionButton>
             </CardActions>
           </CardHeader>
@@ -200,7 +203,7 @@ export default function UuidPage() {
             <div className='flex w-full'>
               <Textarea
                 value={generatedUUIDs}
-                disabled={true}
+                readonly={true}
                 rows={calculateRows(configs.quantity)}
               />
             </div>
