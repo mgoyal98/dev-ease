@@ -14,6 +14,7 @@ import {
   CardTitle,
 } from '@/components/card';
 import { ConfigurationItem } from '@/components/configuration-item';
+import CodeEditor from '@/components/forms/code-editor';
 import SelectBox from '@/components/forms/select-box';
 import Textarea from '@/components/forms/textarea';
 import Toggle from '@/components/forms/toggle';
@@ -26,16 +27,17 @@ interface JsonFormatterConfigs {
 }
 
 const DEFAULT_CONFIGS: JsonFormatterConfigs = {
-  indentation: '4',
+  indentation: '\t',
   sortKeys: false,
   input: '{"name":"DevEase","age":1,"isAdmin":false}',
 };
 
 const INDENTATIONS = [
   { text: 'Minify', value: '0', indentation: 0 },
-  { text: '2 spaces', value: '2', indentation: 2 },
-  { text: '4 spaces', value: '4', indentation: 4 },
-  { text: '1 Tab', value: '\t', indentation: '\t' },
+  { text: '1 Tab Space', value: '\t', indentation: '\t' },
+  { text: '2 Tab Spaces', value: '\t\t', indentation: '\t\t' },
+  { text: '2 Spaces', value: '2', indentation: 2 },
+  { text: '4 Spaces', value: '4', indentation: 4 },
 ];
 
 export default function JsonFormatterTool() {
@@ -117,7 +119,7 @@ export default function JsonFormatterTool() {
             label='Indentation'
             description='Select the indentation style.'
           >
-            <div className='w-36'>
+            <div className='w-40'>
               <SelectBox
                 options={INDENTATIONS}
                 value={configs.indentation}
@@ -192,9 +194,11 @@ export default function JsonFormatterTool() {
             </CardActions>
           </CardHeader>
           <CardContent>
-            <div className='flex w-full'>
-              <Textarea value={outputJson} readonly={true} rows={30} />
-            </div>
+            <CodeEditor
+              id='output-formatted-json'
+              value={outputJson}
+              readOnly
+            />
           </CardContent>
         </Card>
       </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Public_Sans } from 'next/font/google';
+import { Public_Sans, Roboto_Mono } from 'next/font/google';
 import './globals.css';
 import MainLayout from './main.layout';
 import { appConfig } from '@/common/constants';
@@ -10,6 +10,12 @@ const publicSans = Public_Sans({
   weight: ['300', '400', '500', '600', '700'],
   style: ['normal'],
   variable: '--font-public-sans',
+  subsets: ['latin'],
+});
+const robotoMono = Roboto_Mono({
+  weight: ['300', '400', '500', '600', '700'],
+  style: ['normal'],
+  variable: '--font-roboto-mono',
   subsets: ['latin'],
 });
 
@@ -27,9 +33,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className='light'>
+    <html lang='en'>
       <body
-        className={`${publicSans.variable} antialiased dark:bg-backgroundDark dark:text-foregroundDark bg-background text-foreground`}
+        className={`${publicSans.variable} ${robotoMono.variable} antialiased dark:bg-backgroundDark dark:text-foregroundDark bg-background text-foreground`}
       >
         <MainLayout>{children}</MainLayout>
         <Analytics />
