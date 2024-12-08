@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: ToolPageProps) {
   if (!tool) {
     return {
       title: 'Tool Not Found',
-      description: 'The requested category does not exist.',
+      description: 'The specified tool could not be located.',
     };
   }
 
@@ -40,14 +40,18 @@ export async function generateMetadata({ params }: ToolPageProps) {
   return {
     title: `${tool.pageTitle} | ${appConfig.name}`,
     description: tool.description,
+    applicationName: appConfig.name,
+    keywords: tool.keywords,
   };
 }
 
 export async function generateStaticParams() {
-  const tools = navItems.filter((tool) => tool.page).map((tool) => ({
-    categoryId: tool.category,
-    toolId: tool.id,
-  }));
+  const tools = navItems
+    .filter((tool) => tool.page)
+    .map((tool) => ({
+      categoryId: tool.category,
+      toolId: tool.id,
+    }));
 
   return tools;
 }

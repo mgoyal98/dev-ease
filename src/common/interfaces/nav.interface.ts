@@ -4,6 +4,7 @@ export interface INavCategory {
   route: string;
   visibleOnSidebar: boolean;
   description: string;
+  keywords?: string[];
 }
 
 export interface INavItem {
@@ -17,4 +18,5 @@ export interface INavItem {
   visibleOnSidebar: boolean;
   page?: () => React.JSX.Element;
   externalLink?: string;
+  keywords?: string[];
 }

@@ -36,7 +36,8 @@ export async function generateMetadata({ params }: CategoryPageProps) {
   if (!categoryData) {
     return {
       title: 'Category Not Found',
-      description: 'The requested category does not exist.',
+      description: 'The specified category could not be located.',
+      applicationName: appConfig.name,
     };
   }
 
@@ -44,6 +45,12 @@ export async function generateMetadata({ params }: CategoryPageProps) {
   return {
     title: `${categoryData.name} | ${appConfig.name}`,
     description: categoryData.description,
+    applicationName: appConfig.name,
+    keywords: [
+      ...getNavItemsByCategory(categoryId).map(
+        (tool) => `${tool.id} ${categoryId}`
+      ),
+    ],
   };
 }
 

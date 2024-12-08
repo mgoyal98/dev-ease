@@ -4,12 +4,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/card';
 import Content from '@/components/content';
 import ExternalLink from '@/components/external-link';
 import PageTitle from '@/components/page-title';
+import { Metadata } from 'next';
 
 const aboutPage = getNavItemById('about');
 
-export const metadata = {
+export const metadata: Metadata = {
   title: aboutPage?.pageTitle ?? 'About',
   description: aboutPage?.description ?? 'About the website',
+  applicationName: appConfig.name,
+  keywords: aboutPage?.keywords,
 };
 
 export default function AboutPage() {
