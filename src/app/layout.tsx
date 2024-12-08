@@ -5,6 +5,7 @@ import MainLayout from './main.layout';
 import { appConfig } from '@/common/constants';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const publicSans = Public_Sans({
   weight: ['300', '400', '500', '600', '700'],
@@ -38,6 +39,9 @@ export default function RootLayout({
         className={`${publicSans.variable} ${robotoMono.variable} antialiased dark:bg-backgroundDark dark:text-foregroundDark bg-background text-foreground`}
       >
         <MainLayout>{children}</MainLayout>
+        <GoogleAnalytics
+          gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ?? ''}
+        />
         <Analytics />
         <SpeedInsights />
       </body>
