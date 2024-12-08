@@ -1,3 +1,8 @@
+'use client';
+
+import { sendGAEvent } from '@next/third-parties/google';
+import { usePathname } from 'next/navigation';
+
 export function Card({
   children,
   className,
@@ -43,18 +48,33 @@ export function CardActions({ children }: { children: React.ReactNode }) {
 }
 
 export function CardActionButton({
-  children,
+  icon,
+  text,
   onClick,
 }: {
-  children: React.ReactNode;
+  icon?: string;
+  text?: string;
   onClick: () => void;
 }) {
+  const pathName = usePathname();
+
+  const cardActionButtonOnClick = () => {
+    sendGAEvent('card_action_button_click', {
+      text: text,
+      current_path: pathName,
+    });
+    if (onClick) {
+      onClick();
+    }
+  };
+
   return (
     <button
       className='flex text-sm items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-gray-100 dark:bg-neutral-700 hover:bg-gray-200 dark:hover:bg-neutral-600 transition-colors duration-150 ease-in-out'
-      onClick={onClick}
+      onClick={cardActionButtonOnClick}
     >
-      {children}
+      {icon && <i className={`${icon}`}></i>}
+      {text}
     </button>
   );
 }

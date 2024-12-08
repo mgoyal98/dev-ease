@@ -144,12 +144,11 @@ export default function JsonFormatterTool() {
         </CardContent>
         <CardFooter>
           <div className='flex gap-3'>
-            <SecondaryButton onClick={() => setConfigs(DEFAULT_CONFIGS)}>
-              Reset
-            </SecondaryButton>
-            <PrimaryButton onClick={() => formatJson(configs)}>
-              Format
-            </PrimaryButton>
+            <SecondaryButton
+              text='Reset'
+              onClick={() => setConfigs(DEFAULT_CONFIGS)}
+            />
+            <PrimaryButton text='Format' onClick={() => formatJson(configs)} />
           </div>
         </CardFooter>
       </Card>
@@ -160,10 +159,11 @@ export default function JsonFormatterTool() {
           <CardHeader>
             <CardTitle>Input</CardTitle>
             <CardActions>
-              <CardActionButton onClick={() => handlePaste(handleInputChange)}>
-                <i className='far fa-fw fa-paste'></i>
-                Paste
-              </CardActionButton>
+              <CardActionButton
+                icon='far fa-fw fa-paste'
+                text='Paste'
+                onClick={() => handlePaste(handleInputChange)}
+              />
             </CardActions>
           </CardHeader>
           <CardContent>
@@ -180,17 +180,18 @@ export default function JsonFormatterTool() {
           <CardHeader>
             <CardTitle>Output</CardTitle>
             <CardActions>
-              <CardActionButton onClick={() => handleCopy(outputJson)}>
-                <i className='far fa-fw fa-copy'></i>
-                Copy
-              </CardActionButton>
               <CardActionButton
+                icon='far fa-fw fa-copy'
+                text='Copy'
+                onClick={() => handleCopy(outputJson)}
+              />
+              <CardActionButton
+                icon='far fa-fw fa-save'
+                text='Save'
                 onClick={() =>
                   handleDownload(outputJson, 'formatted-json.json')
                 }
-              >
-                <i className='far fa-fw fa-save leading-5'></i>
-              </CardActionButton>
+              />
             </CardActions>
           </CardHeader>
           <CardContent>

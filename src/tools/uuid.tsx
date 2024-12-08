@@ -168,12 +168,14 @@ export default function UuidPage() {
         </CardContent>
         <CardFooter>
           <div className='flex gap-3'>
-            <SecondaryButton onClick={() => setConfigs(DEFAULT_CONFIGS)}>
-              Reset
-            </SecondaryButton>
-            <PrimaryButton onClick={() => generateUuids(configs)}>
-              Generate
-            </PrimaryButton>
+            <SecondaryButton
+              text='Reset'
+              onClick={() => setConfigs(DEFAULT_CONFIGS)}
+            />
+            <PrimaryButton
+              text='Generate'
+              onClick={() => generateUuids(configs)}
+            />
           </div>
         </CardFooter>
       </Card>
@@ -184,19 +186,16 @@ export default function UuidPage() {
           <CardHeader>
             <CardTitle>UUID(s)</CardTitle>
             <CardActions>
-              {/* <CardActionButton onClick={handleSave}>
-                <i className='far fa-fw fa-save size-5 flex items-center justify-center'></i>
-              </CardActionButton> */}
-              <CardActionButton onClick={() => handleCopy(generatedUUIDs)}>
-                <i className='far fa-fw fa-copy'></i>
-                Copy
-              </CardActionButton>
-
               <CardActionButton
+                icon='far fa-fw fa-copy'
+                text='Copy'
+                onClick={() => handleCopy(generatedUUIDs)}
+              />
+              <CardActionButton
+                icon='far fa-fw fa-save'
+                text='Save'
                 onClick={() => handleDownload(generatedUUIDs, 'uuids.txt')}
-              >
-                <i className='far fa-fw fa-save leading-5'></i>
-              </CardActionButton>
+              />
             </CardActions>
           </CardHeader>
           <CardContent>
