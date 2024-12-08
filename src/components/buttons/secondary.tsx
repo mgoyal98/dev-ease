@@ -17,7 +17,7 @@ export default function SecondaryButton({
   const pathName = usePathname();
 
   const secondaryButtonOnClick = () => {
-    sendGAEvent('secondary_button_click', {
+    sendGAEvent('event', 'secondary_button_click', {
       label: text,
       current_path: pathName,
     });

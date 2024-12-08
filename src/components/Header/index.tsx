@@ -21,7 +21,7 @@ export default function Header({
   const pathName = usePathname();
 
   const buyMeCofeeOnClick = (name: string) => {
-    sendGAEvent('buy_me_coffee_click', {
+    sendGAEvent('event', 'buy_me_coffee_click', {
       label: name,
       current_path: pathName,
     });

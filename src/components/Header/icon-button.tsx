@@ -23,7 +23,7 @@ export default function HeaderIconButton({
   const pathName = usePathname();
 
   const iconButtonOnClick = () => {
-    sendGAEvent('header_icon_button_click', {
+    sendGAEvent('event', 'header_icon_button_click', {
       label: name,
       current_path: pathName,
     });

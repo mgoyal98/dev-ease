@@ -59,7 +59,7 @@ export function CardActionButton({
   const pathName = usePathname();
 
   const cardActionButtonOnClick = () => {
-    sendGAEvent('card_action_button_click', {
+    sendGAEvent('event', 'card_action_button_click', {
       text: text,
       current_path: pathName,
     });
