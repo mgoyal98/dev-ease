@@ -2,6 +2,7 @@ import UuidPage from '@/tools/uuid';
 import { INavCategory, INavItem } from '@/common/interfaces';
 import { appConfig } from './app.constant';
 import JsonFormatterTool from '@/tools/json-formatter';
+import Base64TextEncoderDecoderTool from '@/tools/base64-text-encoder-decoder';
 
 export const navCategories: Record<string, INavCategory> = {
   generators: {
@@ -19,6 +20,14 @@ export const navCategories: Record<string, INavCategory> = {
     visibleOnSidebar: true,
     description:
       'Simplify your development workflow with tools to format and structure your data effortlessly.',
+  },
+  'encoders-decoders': {
+    id: 'encoders-decoders',
+    name: 'Encoders / Decoders',
+    route: '/encoders-decoders',
+    visibleOnSidebar: true,
+    description:
+      'Convert your data seamlessly with our Encoders and Decoders. Effortlessly encode or decode text, files, and other formats to suit your development needs.',
   },
   links: {
     id: 'links',
@@ -96,6 +105,39 @@ export const navItems: INavItem[] = [
       'minify JSON online',
       'JSON formatter for developers',
       'JSON tool online',
+    ],
+  },
+
+  // converters
+  {
+    id: 'base64-text',
+    category: navCategories['encoders-decoders'].id,
+    icon: 'far fa-fw fa-file-word',
+    name: 'Base64 Text',
+    pageTitle: 'Base64 Text Encoder and Decoder',
+    description:
+      'Effortlessly encode and decode text using Base64 encoding for secure and efficient data handling.',
+    route: `${navCategories['encoders-decoders'].route}/base64-text`,
+    visibleOnSidebar: true,
+    page: Base64TextEncoderDecoderTool,
+    keywords: [
+      'base64',
+      'base64 encoder',
+      'base64 decoder',
+      'base64 encoding',
+      'base64 decoding',
+      'Base64 text encoder',
+      'Base64 text decoder',
+      'encode text to Base64',
+      'decode Base64 to text',
+      'online Base64 encoder',
+      'online Base64 decoder',
+      'Base64 conversion tool',
+      'text to Base64 converter',
+      'free Base64 encoder',
+      'free Base64 decoder',
+      'Base64 tool online',
+      'Base64 utility for developers',
     ],
   },
 

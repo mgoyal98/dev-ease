@@ -4,4 +4,5 @@ export enum StorageKeys {
   SidebarOpen = 'sidebar-open',
   UuidConfigs = 'uuid-configs',
   JsonFormatterConfigs = 'json-formatter-configs',
+  Base64TextEncoderDecoderConfigs = 'base64-text-encoder-decoder-configs',
 }

@@ -16,7 +16,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
   }
   return (
     <Content>
-      <PageTitle title={data.name} description={data.description} />
+      <PageTitle title={data.pageTitle} description={data.description} />
 
       {data.page && <data.page />}
     </Content>
