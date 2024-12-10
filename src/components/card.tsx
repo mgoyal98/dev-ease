@@ -2,6 +2,7 @@
 
 import { sendGAEvent } from '@next/third-parties/google';
 import { usePathname } from 'next/navigation';
+import { Tooltip } from 'react-tooltip';
 
 export function Card({
   children,
@@ -50,10 +51,14 @@ export function CardActions({ children }: { children: React.ReactNode }) {
 export function CardActionButton({
   icon,
   text,
+  showIcon = true,
+  showText = false,
   onClick,
 }: {
   icon?: string;
-  text?: string;
+  text: string;
+  showIcon?: boolean;
+  showText?: boolean;
   onClick: () => void;
 }) {
   const pathName = usePathname();
@@ -72,9 +77,12 @@ export function CardActionButton({
     <button
       className='flex text-sm items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-gray-100 dark:bg-neutral-700 hover:bg-gray-200 dark:hover:bg-neutral-600 transition-colors duration-150 ease-in-out'
       onClick={cardActionButtonOnClick}
+      data-tooltip-id={`${text}-tooltip`}
+      data-tooltip-content={text}
     >
-      {icon && <i className={`${icon}`}></i>}
-      {text}
+      {showIcon && icon && <i className={`${icon} leading-5`}></i>}
+      {showText && text}
+      <Tooltip id={`${text}-tooltip`} />
     </button>
   );
 }

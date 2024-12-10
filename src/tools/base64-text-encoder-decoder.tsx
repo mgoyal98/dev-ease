@@ -133,7 +133,7 @@ export default function Base64EncoderDecoderTool() {
             </CardTitle>
             <CardActions>
               <CardActionButton
-                icon='far fa-fw fa-backspace'
+                icon='far fa-fw fa-times-circle'
                 text='Clear'
                 onClick={() => handleInputChange('')}
               />
