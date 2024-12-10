@@ -60,7 +60,7 @@ export function CardActionButton({
 
   const cardActionButtonOnClick = () => {
     sendGAEvent('event', 'card_action_button_click', {
-      text: text,
+      label: text,
       current_path: pathName,
     });
     if (onClick) {
