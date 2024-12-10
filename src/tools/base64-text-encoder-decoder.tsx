@@ -133,6 +133,11 @@ export default function Base64EncoderDecoderTool() {
             </CardTitle>
             <CardActions>
               <CardActionButton
+                icon='far fa-fw fa-backspace'
+                text='Clear'
+                onClick={() => handleInputChange('')}
+              />
+              <CardActionButton
                 icon='far fa-fw fa-paste'
                 text='Paste'
                 onClick={() => handlePaste(handleInputChange)}
