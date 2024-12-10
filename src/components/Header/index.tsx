@@ -5,6 +5,7 @@ import HeaderIconButton from './icon-button';
 import { getNavItemById } from '@/common/utils/nav.util';
 import Link from 'next/link';
 import { sendGAEvent } from '@next/third-parties/google';
+import { Tooltip } from 'react-tooltip';
 
 export default function Header({
   onToggleSidebar,
@@ -83,9 +84,14 @@ export default function Header({
           onClick={() => buyMeCofeeOnClick('Buy Me a Coffee')}
           target='_blank'
           className='p-2 rounded-md h-9 font-medium flex items-center justify-center gap-1.5 transition-all duration-200 bg-slate-100 dark:bg-zinc-700 hover:bg-slate-200 dark:hover:bg-zinc-600'
+          data-tooltip-id={`buy-me-coffee-tooltip`}
+          data-tooltip-content='Buy Me a Coffee'
+          data-tooltip-place='bottom'
         >
           <i className='fad fa-fw fa-mug-hot' />
           <span className='hidden md:block'>Buy Me a Coffee</span>
+
+          <Tooltip id={`buy-me-coffee-tooltip`} />
         </Link>
       </div>
     </div>

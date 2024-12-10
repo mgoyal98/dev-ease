@@ -1,6 +1,7 @@
 import { sendGAEvent } from '@next/third-parties/google';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Tooltip } from 'react-tooltip';
 
 const buttonClassName =
   'p-2 rounded-md h-9 w-9 flex items-center justify-center transition-all duration-200 hover:bg-slate-100 dark:hover:bg-zinc-700';
@@ -35,8 +36,15 @@ export default function HeaderIconButton({
   return (
     <>
       {type === 'button' ? (
-        <button className={buttonClassName} onClick={iconButtonOnClick}>
+        <button
+          className={buttonClassName}
+          onClick={iconButtonOnClick}
+          data-tooltip-id={`${name}-tooltip`}
+          data-tooltip-content={name}
+          data-tooltip-place='bottom'
+        >
           <i className={`far fa-fw ${icon}`}></i>
+          <Tooltip id={`${name}-tooltip`} />
         </button>
       ) : (
         <Link
@@ -44,8 +52,12 @@ export default function HeaderIconButton({
           href={href || '#'}
           onClick={iconButtonOnClick}
           target={target}
+          data-tooltip-id={`${name}-tooltip`}
+          data-tooltip-content={name}
+          data-tooltip-place='bottom'
         >
           <i className={`far fa-fw ${icon}`}></i>
+          <Tooltip id={`${name}-tooltip`} />
         </Link>
       )}
     </>
