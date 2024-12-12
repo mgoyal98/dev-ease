@@ -32,12 +32,14 @@ export default function Header({
     <div className='bg-white flex h-14 border-b px-4 py-2 items-center justify-between dark:bg-backgroundDark dark:border-zinc-800'>
       <div className='flex items-center gap-2'>
         <HeaderIconButton
-          name='toggle-sidebar'
+          id='toggle-sidebar'
+          name='Toggle Sidebar'
           icon={isSidebarOpen ? 'fa-outdent' : 'fa-indent'}
           onClick={onToggleSidebar}
         />
         <HeaderIconButton
-          name='home'
+          id='home'
+          name='Home'
           icon='fa-home'
           onClick={() => router.push('/')}
         />
@@ -54,27 +56,31 @@ export default function Header({
       </div>
       <div className='flex items-center gap-2'>
         <HeaderIconButton
-          name='github'
+          id='github'
+          name='GitHub'
           icon={getNavItemById('github')?.icon || ''}
           href={getNavItemById('github')?.externalLink || ''}
           target='_blank'
           type='link'
         />
         <HeaderIconButton
-          name='linkedin'
+          id='linkedin'
+          name='Linkedin'
           icon={getNavItemById('linkedin')?.icon || ''}
           href={getNavItemById('linkedin')?.externalLink || ''}
           target='_blank'
           type='link'
         />
         <HeaderIconButton
-          name='about'
+          id='about'
+          name='About'
           icon={getNavItemById('about')?.icon || ''}
           type='link'
           href={getNavItemById('about')?.route || '/'}
         />
         <HeaderIconButton
-          name='toggle-dark-mode'
+          id='toggle-dark-mode'
+          name='Toggle Dark Mode'
           icon={isDarkMode ? 'fa-lightbulb-on' : 'fa-moon'}
           onClick={onToggleDarkMode}
         />

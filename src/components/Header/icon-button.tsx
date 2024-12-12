@@ -8,6 +8,7 @@ const buttonClassName =
 
 export default function HeaderIconButton({
   name,
+  id,
   type = 'button',
   icon,
   onClick,
@@ -15,6 +16,7 @@ export default function HeaderIconButton({
   target,
 }: {
   name: string;
+  id: string;
   type?: 'button' | 'link';
   icon: string;
   onClick?: () => void;
@@ -25,7 +27,7 @@ export default function HeaderIconButton({
 
   const iconButtonOnClick = () => {
     sendGAEvent('event', 'header_icon_button_click', {
-      label: name,
+      label: id,
       current_path: pathName,
     });
     if (onClick) {
@@ -39,12 +41,12 @@ export default function HeaderIconButton({
         <button
           className={buttonClassName}
           onClick={iconButtonOnClick}
-          data-tooltip-id={`${name}-tooltip`}
+          data-tooltip-id={`${id}-tooltip`}
           data-tooltip-content={name}
           data-tooltip-place='bottom'
         >
           <i className={`far fa-fw ${icon}`}></i>
-          <Tooltip id={`${name}-tooltip`} />
+          <Tooltip id={`${id}-tooltip`} />
         </button>
       ) : (
         <Link
@@ -52,12 +54,12 @@ export default function HeaderIconButton({
           href={href || '#'}
           onClick={iconButtonOnClick}
           target={target}
-          data-tooltip-id={`${name}-tooltip`}
+          data-tooltip-id={`${id}-tooltip`}
           data-tooltip-content={name}
           data-tooltip-place='bottom'
         >
           <i className={`far fa-fw ${icon}`}></i>
-          <Tooltip id={`${name}-tooltip`} />
+          <Tooltip id={`${id}-tooltip`} />
         </Link>
       )}
     </>
