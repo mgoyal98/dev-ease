@@ -13,11 +13,15 @@ export default function CodeEditor({
   id,
   onChange,
   readOnly = false,
+  minLines = 31,
+  maxLines = 40,
 }: {
   value: string;
   mode?: string;
   id?: string;
   readOnly?: boolean;
+  minLines?: number;
+  maxLines?: number;
   onChange?: (value: string) => void;
 }) {
   return (
@@ -30,8 +34,9 @@ export default function CodeEditor({
         fontSize: '1rem',
         showPrintMargin: false,
         readOnly,
-        minLines: 31,
-        maxLines:40
+        minLines,
+        maxLines,
+        wrap: true,
       }}
       className='ace-devease-theme'
       onChange={onChange}

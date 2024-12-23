@@ -3,6 +3,7 @@ import { INavCategory, INavItem } from '@/common/interfaces';
 import { appConfig } from './app.constant';
 import JsonFormatterTool from '@/tools/json-formatter';
 import Base64TextEncoderDecoderTool from '@/tools/base64-text-encoder-decoder';
+import JwtTool from '@/tools/jwt';
 
 export const navCategories: Record<string, INavCategory> = {
   generators: {
@@ -108,7 +109,7 @@ export const navItems: INavItem[] = [
     ],
   },
 
-  // converters
+  // encoders-decoders
   {
     id: 'base64-text',
     category: navCategories['encoders-decoders'].id,
@@ -138,6 +139,39 @@ export const navItems: INavItem[] = [
       'free Base64 decoder',
       'Base64 tool online',
       'Base64 utility for developers',
+    ],
+  },
+
+  {
+    id: 'jwt',
+    category: navCategories['encoders-decoders'].id,
+    icon: 'far fa-fw fa-key',
+    name: 'JWT',
+    pageTitle: 'JWT Encoder and Decoder',
+    description:
+      'Encode and decode JSON Web Tokens (JWT). Easily inspect JWT headers, payloads, and signatures.',
+    route: `${navCategories['encoders-decoders'].route}/jwt`,
+    visibleOnSidebar: true,
+    page: JwtTool,
+    keywords: [
+      'jwt',
+      'jwt decoder',
+      'jwt encoder',
+      'json web token',
+      'jwt parser',
+      'decode jwt',
+      'encode jwt',
+      'jwt inspector',
+      'jwt validator',
+      'jwt tool',
+      'jwt debugger',
+      'jwt generator',
+      'jwt creator',
+      'jwt viewer',
+      'jwt analyzer',
+      'online jwt decoder',
+      'online jwt encoder',
+      'jwt tool for developers',
     ],
   },
 

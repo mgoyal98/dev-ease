@@ -202,7 +202,7 @@ export default function UuidPage() {
             <div className='flex w-full'>
               <Textarea
                 value={generatedUUIDs}
-                readonly={true}
+                readOnly={true}
                 rows={calculateRows(configs.quantity)}
               />
             </div>

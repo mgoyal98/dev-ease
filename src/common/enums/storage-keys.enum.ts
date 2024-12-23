@@ -5,4 +5,5 @@ export enum StorageKeys {
   UuidConfigs = 'uuid-configs',
   JsonFormatterConfigs = 'json-formatter-configs',
   Base64TextEncoderDecoderConfigs = 'base64-text-encoder-decoder-configs',
+  JwtConfigs = 'jwt-configs',
 }

@@ -177,7 +177,7 @@ export default function Base64EncoderDecoderTool() {
               value={output}
               onChange={handleInputChange}
               rows={30}
-              readonly={true}
+              readOnly={true}
             />
           </CardContent>
         </Card>
