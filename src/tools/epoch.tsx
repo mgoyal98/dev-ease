@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/card';
 import Input from '@/components/forms/input';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import ClipboardText from '@/components/clipboard-text';
 import { ConfigurationItem } from '@/components/configuration-item';
 
@@ -44,16 +44,21 @@ export default function EpochTool() {
   const [currentEpoch, setCurrentEpoch] = useState<string>('');
   const [epochInput, setEpochInput] = useState<string>('');
   const [dateComponents, setDateComponents] = useState({
-    year: '',
-    month: '',
-    day: '',
-    hour: '',
-    minute: '',
-    second: '',
+    year: '2025',
+    month: '01',
+    day: '01',
+    hour: '00',
+    minute: '00',
+    second: '00',
     ampm: 'AM',
     timezone: 'local',
   });
   const [secondsInput, setSecondsInput] = useState<string>('90061');
+  const [timePeriodComponents, setTimePeriodComponents] = useState({
+    year: '2025',
+    month: '01',
+    day: '01',
+  });
 
   useEffect(() => {
     const lastConfigs = localStorage.getItem(StorageKeys.EpochConfigs);
@@ -105,39 +110,42 @@ export default function EpochTool() {
     return epoch;
   }
 
-  const convertEpochToDate = (
-    epoch: string,
-    format: string = '12',
-    showUTC: boolean = false
-  ) => {
-    try {
-      if (!epoch) {
-        return '';
-      }
+  const convertEpochToDate = useCallback(
+    (epoch: string, showUTC: boolean = false) => {
+      try {
+        if (!epoch) {
+          return '';
+        }
 
-      const timestamp = parseInt(ensureMilliseconds(epoch));
-      if (isNaN(timestamp)) {
+        const timestamp = parseInt(ensureMilliseconds(epoch));
+        if (isNaN(timestamp)) {
+          return 'Invalid epoch timestamp';
+        }
+
+        let dateFormat = 'dddd, DD MMMM YYYY hh:mm:ss';
+        if (configs.timeFormat === 'milliseconds') {
+          dateFormat += '.SSS';
+        }
+
+        if (configs.hoursFormat === '12') {
+          dateFormat += ' A';
+        }
+
+        let date = dayjs(timestamp);
+
+        if (showUTC) {
+          date = date.utc();
+        } else {
+          dateFormat += ' Z';
+        }
+
+        return date.format(dateFormat);
+      } catch {
         return 'Invalid epoch timestamp';
       }
-
-      let dateFormat =
-        format === '12'
-          ? 'dddd, DD MMMM YYYY hh:mm:ss.SSS A'
-          : 'dddd, DD MMMM YYYY HH:mm:ss.SSS';
-
-      let date = dayjs(timestamp);
-
-      if (showUTC) {
-        date = date.utc();
-      } else {
-        dateFormat += ' Z';
-      }
-
-      return date.format(dateFormat);
-    } catch {
-      return 'Invalid epoch timestamp';
-    }
-  };
+    },
+    [configs.timeFormat, configs.hoursFormat]
+  );
 
   const getRelativeDate = (epoch: string) => {
     if (!epoch) {
@@ -213,6 +221,25 @@ export default function EpochTool() {
     return parts.join(', ');
   };
 
+  const getTimePeriodEpochs = (
+    date: string,
+    type: 'day' | 'month' | 'year',
+    timeFormat: string
+  ) => {
+    const start = parseInt(dayjs(date).startOf(type).valueOf().toString());
+    const end = parseInt(dayjs(date).endOf(type).valueOf().toString());
+    return {
+      start:
+        timeFormat === 'seconds'
+          ? Math.floor(start / 1000).toString()
+          : start.toString(),
+      end:
+        timeFormat === 'seconds'
+          ? Math.floor(end / 1000).toString()
+          : end.toString(),
+    };
+  };
+
   return (
     <div className='flex gap-4 flex-col'>
       <Card>
@@ -280,15 +307,11 @@ export default function EpochTool() {
               <div className='flex flex-col gap-4'>
                 <div className='flex flex-col md:flex-row gap-4'>
                   <div className='font-semibold md:w-1/6'>GMT:</div>
-                  <div>
-                    {convertEpochToDate(epochInput, configs.hoursFormat, true)}
-                  </div>
+                  <div>{convertEpochToDate(epochInput, true)}</div>
                 </div>
                 <div className='flex flex-col md:flex-row gap-4'>
                   <div className='font-semibold md:w-1/6'>Local:</div>
-                  <div>
-                    {convertEpochToDate(epochInput, configs.hoursFormat, false)}
-                  </div>
+                  <div>{convertEpochToDate(epochInput, false)}</div>
                 </div>
                 <div className='flex flex-col md:flex-row gap-4'>
                   <div className='font-semibold md:w-1/6'>Relative:</div>
@@ -433,6 +456,271 @@ export default function EpochTool() {
                 </div>
               </div>
             </RenderConditional>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Time Period Epochs */}
+      <Card className='w-full'>
+        <CardHeader>
+          <CardTitle>Time Period Epochs</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className='flex flex-col gap-5'>
+            <div className='flex flex-col items-center md:flex-row gap-3 mb-4'>
+              <Input
+                placeholder='YYYY'
+                className='md:w-20'
+                value={timePeriodComponents.year}
+                onChange={(value) =>
+                  setTimePeriodComponents((prev) => ({ ...prev, year: value }))
+                }
+              />
+              <div className='hidden md:block'>-</div>
+              <Input
+                placeholder='MM'
+                className='md:w-12'
+                value={timePeriodComponents.month}
+                onChange={(value) =>
+                  setTimePeriodComponents((prev) => ({ ...prev, month: value }))
+                }
+              />
+              <div className='hidden md:block'>-</div>
+              <Input
+                placeholder='DD'
+                className='md:w-12'
+                value={timePeriodComponents.day}
+                onChange={(value) =>
+                  setTimePeriodComponents((prev) => ({ ...prev, day: value }))
+                }
+              />
+            </div>
+
+            <div className='w-full flex flex-col gap-4 overflow-x-auto'>
+              <table className='table-auto w-full text-center border dark:border-neutral-700'>
+                <thead>
+                  <tr className='border-b dark:border-neutral-700'>
+                    <th className='px-6 py-3 border-r dark:border-neutral-700'>
+                      Type
+                    </th>
+                    <th className='px-6 py-3 border-r dark:border-neutral-700'>
+                      Time Period
+                    </th>
+                    <th className='px-6 py-3 border-r dark:border-neutral-700'>
+                      Epoch
+                    </th>
+                    <th className='px-6 py-3'>Date and Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Day */}
+                  <RenderConditional
+                    condition={
+                      !!(
+                        timePeriodComponents.year &&
+                        timePeriodComponents.month &&
+                        timePeriodComponents.day
+                      )
+                    }
+                  >
+                    {/* Day Start */}
+                    <tr className='border-b dark:border-neutral-700'>
+                      <td
+                        rowSpan={2}
+                        className='px-6 py-3 border-r dark:border-neutral-700 font-bold'
+                      >
+                        Day
+                      </td>
+                      <td className='px-6 py-3 border-r dark:border-neutral-700'>
+                        Start
+                      </td>
+                      <td className='px-6 py-3 border-r dark:border-neutral-700'>
+                        <ClipboardText
+                          id='day-start'
+                          text={
+                            getTimePeriodEpochs(
+                              `${timePeriodComponents.year}-${timePeriodComponents.month}-${timePeriodComponents.day}`,
+                              'day',
+                              configs.timeFormat
+                            ).start
+                          }
+                        />
+                      </td>
+                      <td className='px-6 py-3'>
+                        {convertEpochToDate(
+                          getTimePeriodEpochs(
+                            `${timePeriodComponents.year}-${timePeriodComponents.month}-${timePeriodComponents.day}`,
+                            'day',
+                            configs.timeFormat
+                          ).start
+                        )}
+                      </td>
+                    </tr>
+                    {/* Day End */}
+                    <tr className='border-b dark:border-neutral-700'>
+                      <td className='px-6 py-3 border-r dark:border-neutral-700'>
+                        End
+                      </td>
+                      <td className='px-6 py-3 border-r dark:border-neutral-700'>
+                        <ClipboardText
+                          id='day-end'
+                          text={
+                            getTimePeriodEpochs(
+                              `${timePeriodComponents.year}-${timePeriodComponents.month}-${timePeriodComponents.day}`,
+                              'day',
+                              configs.timeFormat
+                            ).end
+                          }
+                        />
+                      </td>
+                      <td className='px-6 py-3'>
+                        {convertEpochToDate(
+                          getTimePeriodEpochs(
+                            `${timePeriodComponents.year}-${timePeriodComponents.month}-${timePeriodComponents.day}`,
+                            'day',
+                            configs.timeFormat
+                          ).end
+                        )}
+                      </td>
+                    </tr>
+                  </RenderConditional>
+
+                  {/* Month */}
+                  <RenderConditional
+                    condition={
+                      !!(
+                        timePeriodComponents.year && timePeriodComponents.month
+                      )
+                    }
+                  >
+                    {/* Month Start */}
+                    <tr className='border-b dark:border-neutral-700'>
+                      <td
+                        rowSpan={2}
+                        className='px-6 py-3 border-r dark:border-neutral-700 font-bold'
+                      >
+                        Month
+                      </td>
+                      <td className='px-6 py-3 border-r dark:border-neutral-700'>
+                        Start
+                      </td>
+                      <td className='px-6 py-3 border-r dark:border-neutral-700'>
+                        <ClipboardText
+                          id='month-start'
+                          text={
+                            getTimePeriodEpochs(
+                              `${timePeriodComponents.year}-${timePeriodComponents.month}-01`,
+                              'month',
+                              configs.timeFormat
+                            ).start
+                          }
+                        />
+                      </td>
+                      <td className='px-6 py-3'>
+                        {convertEpochToDate(
+                          getTimePeriodEpochs(
+                            `${timePeriodComponents.year}-${timePeriodComponents.month}-01`,
+                            'month',
+                            configs.timeFormat
+                          ).start
+                        )}
+                      </td>
+                    </tr>
+                    {/* Month End */}
+                    <tr className='border-b dark:border-neutral-700'>
+                      <td className='px-6 py-3 border-r dark:border-neutral-700'>
+                        End
+                      </td>
+                      <td className='px-6 py-3 border-r dark:border-neutral-700'>
+                        <ClipboardText
+                          id='month-end'
+                          text={
+                            getTimePeriodEpochs(
+                              `${timePeriodComponents.year}-${timePeriodComponents.month}-01`,
+                              'month',
+                              configs.timeFormat
+                            ).end
+                          }
+                        />
+                      </td>
+                      <td className='px-6 py-3'>
+                        {convertEpochToDate(
+                          getTimePeriodEpochs(
+                            `${timePeriodComponents.year}-${timePeriodComponents.month}-01`,
+                            'month',
+                            configs.timeFormat
+                          ).end
+                        )}
+                      </td>
+                    </tr>
+                  </RenderConditional>
+
+                  {/* Year */}
+                  <RenderConditional condition={!!timePeriodComponents.year}>
+                    {/* Year Start */}
+                    <tr className='border-b dark:border-neutral-700'>
+                      <td
+                        rowSpan={2}
+                        className='px-6 py-3 border-r dark:border-neutral-700 font-bold'
+                      >
+                        Year
+                      </td>
+                      <td className='px-6 py-3 border-r dark:border-neutral-700'>
+                        Start
+                      </td>
+                      <td className='px-6 py-3 border-r dark:border-neutral-700'>
+                        <ClipboardText
+                          id='year-start'
+                          text={
+                            getTimePeriodEpochs(
+                              `${timePeriodComponents.year}-01-01`,
+                              'year',
+                              configs.timeFormat
+                            ).start
+                          }
+                        />
+                      </td>
+                      <td className='px-6 py-3'>
+                        {convertEpochToDate(
+                          getTimePeriodEpochs(
+                            `${timePeriodComponents.year}-01-01`,
+                            'year',
+                            configs.timeFormat
+                          ).start
+                        )}
+                      </td>
+                    </tr>
+                    {/* Month End */}
+                    <tr className='border-b dark:border-neutral-700'>
+                      <td className='px-6 py-3 border-r dark:border-neutral-700'>
+                        End
+                      </td>
+                      <td className='px-6 py-3 border-r dark:border-neutral-700'>
+                        <ClipboardText
+                          id='year-end'
+                          text={
+                            getTimePeriodEpochs(
+                              `${timePeriodComponents.year}-01-01`,
+                              'year',
+                              configs.timeFormat
+                            ).end
+                          }
+                        />
+                      </td>
+                      <td className='px-6 py-3'>
+                        {convertEpochToDate(
+                          getTimePeriodEpochs(
+                            `${timePeriodComponents.year}-01-01`,
+                            'year',
+                            configs.timeFormat
+                          ).end
+                        )}
+                      </td>
+                    </tr>
+                  </RenderConditional>
+                </tbody>
+              </table>
+            </div>
           </div>
         </CardContent>
       </Card>

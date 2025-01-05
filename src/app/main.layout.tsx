@@ -52,9 +52,9 @@ export default function MainLayout({
   };
 
   return (
-    <div className='flex'>
+    <div className='w-full flex'>
       <Sidebar isSidebarOpen={isSidebarOpen} onToggleSidebar={toggleSidebar} />
-      <div className='flex-1 flex-col'>
+      <div className='flex-1 flex-col overflow-x-hidden'>
         <Header
           onToggleSidebar={toggleSidebar}
           isSidebarOpen={isSidebarOpen}

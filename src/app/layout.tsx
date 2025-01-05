@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${publicSans.variable} ${robotoMono.variable} antialiased dark:bg-backgroundDark dark:text-foregroundDark bg-background text-foreground`}
+        className={`${publicSans.variable} ${robotoMono.variable} antialiased dark:bg-backgroundDark dark:text-foregroundDark bg-background text-foreground overflow-x-hidden`}
       >
         <MainLayout>{children}</MainLayout>
         <GoogleAnalytics
