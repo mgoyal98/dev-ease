@@ -2,7 +2,7 @@
 
 import { StorageKeys } from '@/common/enums/storage-keys.enum';
 import { handleCopy, handleDownload, handlePaste } from '@/common/utils';
-import { keyify } from '@/common/utils/json';
+import { getNestedValue, keyify } from '@/common/utils/json';
 import SecondaryButton from '@/components/buttons/secondary';
 import {
   Card,
@@ -18,7 +18,6 @@ import SelectBox from '@/components/forms/select-box';
 import Textarea from '@/components/forms/textarea';
 import Toggle from '@/components/forms/toggle';
 import { useEffect, useState, useCallback } from 'react';
-import * as jsonpath from 'jsonpath';
 import CodeEditor from '@/components/forms/code-editor';
 
 interface JsonToCsvConfigs {
@@ -84,7 +83,7 @@ export default function JsonToCsvTool() {
         const headers = keyify(json[0]);
         const rows = json.map((obj) =>
           headers.map((header) => {
-            const value = jsonpath.value(obj, header);
+            const value = getNestedValue(obj, header);
 
             // Handle values that contain delimiters or newlines
             if (
