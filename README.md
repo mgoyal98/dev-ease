@@ -1,8 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DevEase - Your Go-To Toolbox for All Things Tech
 
-## Getting Started
+A modern web application built with Next.js that provides a collection of essential development tools to streamline your workflow.
 
-First, run the development server:
+## 🚀 Features
+
+- 💻 **Technical Features**
+  - Server-side rendering with Next.js 14
+  - Type safety with TypeScript
+  - Responsive design with Tailwind CSS
+  - Dark mode support
+  - Google Analytics integration
+  - Performance monitoring with Vercel Analytics
+
+## 🔧 Prerequisites
+
+Before you begin, ensure you have installed:
+
+- Node.js (version 18 or higher)
+- npm, yarn, or pnpm
+
+## 🏗️ Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/mgoyal98/dev-ease.git
+cd dev-ease
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Set up environment variables:
+
+```bash
+cp .env.example .env.local
+```
+
+4. Start the development server:
 
 ```bash
 npm run dev
@@ -10,27 +52,102 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000) to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                    # Next.js app directory
+│   ├── [categoryId]/      # Dynamic category routes
+│   ├── about/             # About page
+│   └── layout.tsx         # Root layout
+├── common/                # Shared utilities and constants
+│   ├── constants/         # Application constants
+│   ├── enums/            # TypeScript enums
+│   ├── interfaces/       # TypeScript interfaces
+│   └── utils/            # Utility functions
+├── components/           # Reusable React components
+└── tools/               # Individual tool implementations
+```
 
-## Learn More
+## 🛠️ Development
 
-To learn more about Next.js, take a look at the following resources:
+This project uses:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **TypeScript** for type safety
+- **ESLint** for code linting
+- **Prettier** for code formatting
+- **Tailwind CSS** for styling
+- **Next.js** for the framework
+- **Vercel** for deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Available Scripts
 
-## Deploy on Vercel
+```bash
+# Development
+npm run dev         # Start development server
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Building
+npm run build      # Create production build
+npm run start      # Start production server
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Code Quality
+npm run lint       # Run ESLint
+npm run format     # Run Prettier
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch:
+
+```bash
+git checkout -b feature/amazing-feature
+```
+
+3. Commit your changes:
+
+```bash
+git commit -m 'Add some amazing feature'
+```
+
+4. Push to the branch:
+
+```bash
+git push origin feature/amazing-feature
+```
+
+5. Open a Pull Request
+
+### Contribution Guidelines
+
+- Write clear, descriptive commit messages
+- Update documentation as needed
+- Add tests for new features
+- Follow the existing code style
+
+## 🌟 Support
+
+If you find this project helpful, please consider:
+
+- Giving it a star on GitHub ⭐
+- Sharing it with others 🗣️
+- [Buying me a coffee ☕](https://razorpay.me/@mgoyal)
+
+## 📫 Contact
+
+- GitHub: [@mgoyal98](https://github.com/mgoyal98)
+- LinkedIn: [Madhur Goyal](https://linkedin.com/in/madhur-goyal)
+- Website: [mgoyal.com](https://mgoyal.com)
+
+## Questions or Feedback?
+
+If you have any questions, issues, or suggestions, feel free to open a GitHub [issue]<https://github.com/mgoyal98/dev-ease/issues>. Thank you for using PDF Pipeline!
+
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

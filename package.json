@@ -4,7 +4,7 @@
   "private": true,
   "author": {
     "name": "Madhur Goyal",
-    "email": "madhur.goyal@gmail.com"
+    "email": "hi@mgoyal.com"
   },
   "scripts": {
     "dev": "next dev --turbopack",
