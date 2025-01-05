@@ -89,7 +89,7 @@ export default function Base64EncoderDecoderTool() {
   return (
     <div>
       {/* Configuration */}
-      <Card>
+      <Card collapsible>
         <CardHeader>
           <CardTitle>Configuration</CardTitle>
         </CardHeader>

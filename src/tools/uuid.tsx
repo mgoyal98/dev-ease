@@ -111,7 +111,7 @@ export default function UuidPage() {
   return (
     <div>
       {/* Configuration */}
-      <Card>
+      <Card collapsible>
         <CardHeader>
           <CardTitle>Configuration</CardTitle>
         </CardHeader>

@@ -109,7 +109,7 @@ export default function JsonFormatterTool() {
   return (
     <div>
       {/* Configuration */}
-      <Card>
+      <Card collapsible>
         <CardHeader>
           <CardTitle>Configuration</CardTitle>
         </CardHeader>

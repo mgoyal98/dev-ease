@@ -128,7 +128,7 @@ export default function JwtTool() {
   return (
     <div>
       {/* Configuration */}
-      <Card>
+      <Card collapsible>
         <CardHeader>
           <CardTitle>Configuration</CardTitle>
         </CardHeader>
