@@ -9,6 +9,7 @@ import {
   isValidElement,
   useState,
 } from 'react';
+import RenderConditional from './render-conditional';
 
 export function Card({
   children,
@@ -33,14 +34,18 @@ export function Card({
     <div
       className={`bg-white rounded-md border border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 ${className}`}
     >
-      {collapsible && headerChild
-        ? cloneElement(headerChild as React.ReactElement, {
+      <RenderConditional condition={!collapsible}>{children}</RenderConditional>
+      <RenderConditional condition={collapsible}>
+        {headerChild &&
+          cloneElement(headerChild as React.ReactElement, {
             isCollapsed,
             setIsCollapsed,
             collapsible,
-          })
-        : headerChild}
-      {!isCollapsed && otherChildren}
+          })}
+        <RenderConditional condition={!isCollapsed}>
+          {otherChildren}
+        </RenderConditional>
+      </RenderConditional>
     </div>
   );
 }
