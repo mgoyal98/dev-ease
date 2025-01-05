@@ -53,6 +53,7 @@ export default function EpochTool() {
     ampm: 'AM',
     timezone: 'local',
   });
+  const [secondsInput, setSecondsInput] = useState<string>('90061');
 
   useEffect(() => {
     const lastConfigs = localStorage.getItem(StorageKeys.EpochConfigs);
@@ -193,24 +194,24 @@ export default function EpochTool() {
     }
   };
 
-  // const calculateTimeBreakdown = (seconds: number) => {
-  //   const days = Math.floor(seconds / (24 * 60 * 60));
-  //   seconds -= days * 24 * 60 * 60;
+  const calculateTimeBreakdown = (seconds: number) => {
+    const days = Math.floor(seconds / (24 * 60 * 60));
+    seconds -= days * 24 * 60 * 60;
 
-  //   const hours = Math.floor(seconds / (60 * 60));
-  //   seconds -= hours * 60 * 60;
+    const hours = Math.floor(seconds / (60 * 60));
+    seconds -= hours * 60 * 60;
 
-  //   const minutes = Math.floor(seconds / 60);
-  //   seconds -= minutes * 60;
+    const minutes = Math.floor(seconds / 60);
+    seconds -= minutes * 60;
 
-  //   const parts = [];
-  //   if (days > 0) parts.push(`${days} day${days !== 1 ? 's' : ''}`);
-  //   if (hours > 0) parts.push(`${hours} hour${hours !== 1 ? 's' : ''}`);
-  //   if (minutes > 0) parts.push(`${minutes} minute${minutes !== 1 ? 's' : ''}`);
-  //   if (seconds > 0) parts.push(`${seconds} second${seconds !== 1 ? 's' : ''}`);
+    const parts = [];
+    if (days > 0) parts.push(`${days} day${days !== 1 ? 's' : ''}`);
+    if (hours > 0) parts.push(`${hours} hour${hours !== 1 ? 's' : ''}`);
+    if (minutes > 0) parts.push(`${minutes} minute${minutes !== 1 ? 's' : ''}`);
+    if (seconds > 0) parts.push(`${seconds} second${seconds !== 1 ? 's' : ''}`);
 
-  //   return parts.join(', ');
-  // };
+    return parts.join(', ');
+  };
 
   return (
     <div className='flex gap-4 flex-col'>
@@ -403,6 +404,32 @@ export default function EpochTool() {
                     id='epoch-text'
                     text={convertDateToEpoch(dateComponents)}
                   />
+                </div>
+              </div>
+            </RenderConditional>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Seconds to Time Breakdown */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Seconds to Time Breakdown</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className='flex flex-col gap-4'>
+            <div className='flex flex-col sm:flex-row gap-4'>
+              <Input
+                placeholder='Enter seconds'
+                onChange={(value) => setSecondsInput(value)}
+                value={secondsInput}
+              />
+            </div>
+            <RenderConditional condition={!!secondsInput?.trim()}>
+              <div className='flex flex-col md:flex-row gap-4'>
+                <div className='font-semibold md:w-1/6'>Result:</div>
+                <div>
+                  {calculateTimeBreakdown(parseInt(secondsInput || '0'))}
                 </div>
               </div>
             </RenderConditional>
