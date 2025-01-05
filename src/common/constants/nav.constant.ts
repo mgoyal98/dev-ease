@@ -281,7 +281,7 @@ export const navItems: INavItem[] = [
     name: 'GitHub',
     pageTitle: 'GitHub',
     description: 'GitHub Repository',
-    externalLink: 'https://github.com/mgoyal98',
+    externalLink: 'https://github.com/mgoyal98/dev-ease',
     visibleOnSidebar: false,
   },
   {
