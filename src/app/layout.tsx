@@ -35,6 +35,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
+      <head>
+        <meta name='apple-mobile-web-app-title' content={appConfig.name} />
+      </head>
       <body
         className={`${publicSans.variable} ${robotoMono.variable} antialiased dark:bg-backgroundDark dark:text-foregroundDark bg-background text-foreground overflow-x-hidden`}
       >
