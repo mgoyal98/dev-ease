@@ -95,7 +95,6 @@ export default function Header({
           data-tooltip-place='bottom'
         >
           <i className='fad fa-fw fa-mug-hot' />
-          <span className='hidden md:block'>Buy Me a Coffee</span>
 
           <Tooltip id={`buy-me-coffee-tooltip`} />
         </Link>

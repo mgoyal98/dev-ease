@@ -4,6 +4,7 @@ import { appConfig } from './app.constant';
 import JsonFormatterTool from '@/tools/json-formatter';
 import Base64TextEncoderDecoderTool from '@/tools/base64-text-encoder-decoder';
 import JwtTool from '@/tools/jwt';
+import EpochTool from '@/tools/epoch';
 
 export const navCategories: Record<string, INavCategory> = {
   generators: {
@@ -29,6 +30,14 @@ export const navCategories: Record<string, INavCategory> = {
     visibleOnSidebar: true,
     description:
       'Convert your data seamlessly with our Encoders and Decoders. Effortlessly encode or decode text, files, and other formats to suit your development needs.',
+  },
+  converters: {
+    id: 'converters',
+    name: 'Converters',
+    route: '/converters',
+    visibleOnSidebar: true,
+    description:
+      'Quickly transform data between various formats with our versatile Converters.',
   },
   links: {
     id: 'links',
@@ -172,6 +181,41 @@ export const navItems: INavItem[] = [
       'online jwt decoder',
       'online jwt encoder',
       'jwt tool for developers',
+    ],
+  },
+
+  // converters
+
+  {
+    id: 'epoch',
+    category: navCategories.converters.id,
+    icon: 'far fa-fw fa-clock',
+    name: 'Epoch Converter',
+    pageTitle: 'Epoch Converter',
+    description:
+      'Convert between epoch timestamps and human-readable dates. Calculate time durations and get current epoch time.',
+    route: `${navCategories.converters.route}/epoch`,
+    visibleOnSidebar: true,
+    page: EpochTool,
+    keywords: [
+      'epoch',
+      'epoch converter',
+      'unix timestamp',
+      'timestamp converter',
+      'epoch to date',
+      'date to epoch',
+      'unix time',
+      'timestamp to date',
+      'current epoch',
+      'epoch calculator',
+      'time converter',
+      'unix epoch',
+      'epoch time',
+      'milliseconds to date',
+      'seconds to date',
+      'time duration calculator',
+      'epoch to human readable',
+      'timestamp tool',
     ],
   },
 
