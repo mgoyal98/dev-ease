@@ -5,6 +5,7 @@ import JsonFormatterTool from '@/tools/json-formatter';
 import Base64TextEncoderDecoderTool from '@/tools/base64-text-encoder-decoder';
 import JwtTool from '@/tools/jwt';
 import EpochTool from '@/tools/epoch';
+import JsonToCsvTool from '@/tools/json-to-csv';
 
 export const navCategories: Record<string, INavCategory> = {
   generators: {
@@ -216,6 +217,39 @@ export const navItems: INavItem[] = [
       'time duration calculator',
       'epoch to human readable',
       'timestamp tool',
+    ],
+  },
+
+  {
+    id: 'json-to-csv',
+    category: navCategories.converters.id,
+    icon: 'far fa-fw fa-file-csv',
+    name: 'JSON to CSV',
+    pageTitle: 'JSON to CSV Converter',
+    description:
+      'Convert JSON data to CSV format. Easily transform JSON arrays into downloadable CSV files.',
+    route: `${navCategories.converters.route}/json-to-csv`,
+    visibleOnSidebar: true,
+    page: JsonToCsvTool,
+    keywords: [
+      'json to csv',
+      'csv converter',
+      'json converter',
+      'json to csv converter',
+      'convert json to csv',
+      'json array to csv',
+      'json data converter',
+      'csv export',
+      'json transformation',
+      'online json to csv',
+      'free json to csv converter',
+      'json to csv tool',
+      'csv generator',
+      'json to spreadsheet',
+      'data conversion tool',
+      'json to excel',
+      'convert json data',
+      'csv transformation',
     ],
   },
 

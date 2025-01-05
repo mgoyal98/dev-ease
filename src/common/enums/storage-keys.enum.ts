@@ -7,4 +7,5 @@ export enum StorageKeys {
   Base64TextEncoderDecoderConfigs = 'base64-text-encoder-decoder-configs',
   JwtConfigs = 'jwt-configs',
   EpochConfigs = 'epoch-configs',
+  JsonToCsvConfigs = 'json-to-csv-configs',
 }
