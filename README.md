@@ -2,6 +2,8 @@
 
 A modern web application built with Next.js that provides a collection of essential development tools to streamline your workflow.
 
+🌐 **[Visit DevEase](https://devease.app)**
+
 ## 🚀 Features
 
 - 💻 **Technical Features**
@@ -18,8 +20,11 @@ Before you begin, ensure you have installed:
 
 - Node.js (version 18 or higher)
 - npm, yarn, or pnpm
+- Docker (optional, for containerized deployment)
 
 ## 🏗️ Installation
+
+### Local Development
 
 1. Clone the repository:
 
@@ -56,6 +61,22 @@ pnpm dev
 
 Visit [http://localhost:3000](http://localhost:3000) to see the application.
 
+### Docker Deployment
+
+1. Build the Docker image:
+
+```bash
+docker build -t dev-ease .
+```
+
+2. Run the container:
+
+```bash
+docker run -p 3000:3000 dev-ease
+```
+
+Visit [http://localhost:3000](http://localhost:3000) to see the application.
+
 ## 📁 Project Structure
 
 ```
@@ -82,6 +103,7 @@ This project uses:
 - **Prettier** for code formatting
 - **Tailwind CSS** for styling
 - **Next.js** for the framework
+- **Docker** for containerization
 - **Vercel** for deployment
 
 ### Available Scripts
@@ -93,6 +115,10 @@ npm run dev         # Start development server
 # Building
 npm run build      # Create production build
 npm run start      # Start production server
+
+# Docker
+docker build -t dev-ease .    # Build Docker image
+docker run -p 3000:3000 dev-ease    # Run Docker container
 
 # Code Quality
 npm run lint       # Run ESLint
@@ -137,11 +163,19 @@ If you find this project helpful, please consider:
 - Sharing it with others 🗣️
 - [Buying me a coffee ☕](https://razorpay.me/@mgoyal)
 
+## 📫 Quick Links
+
+- 🏠 [DevEase Website](https://devease.app)
+- 📖 [Documentation](https://devease.app/docs)
+- 💻 [GitHub Repository](https://github.com/mgoyal98/dev-ease)
+- 🐛 [Issue Tracker](https://github.com/mgoyal98/dev-ease/issues)
+
 ## 📫 Contact
 
+- Website: [devease.app](https://devease.app)
 - GitHub: [@mgoyal98](https://github.com/mgoyal98)
 - LinkedIn: [Madhur Goyal](https://linkedin.com/in/madhur-goyal)
-- Website: [mgoyal.com](https://mgoyal.com)
+- Personal Website: [mgoyal.com](https://mgoyal.com)
 
 ## Questions or Feedback?
 
