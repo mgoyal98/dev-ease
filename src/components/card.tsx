@@ -3,27 +3,70 @@
 import { sendGAEvent } from '@next/third-parties/google';
 import { usePathname } from 'next/navigation';
 import { Tooltip } from 'react-tooltip';
+import {
+  Children as ReactChildren,
+  cloneElement,
+  isValidElement,
+  useState,
+} from 'react';
 
 export function Card({
   children,
   className,
+  collapsible = false,
 }: {
   children: React.ReactNode;
   className?: string;
+  collapsible?: boolean;
 }) {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  // Separate header from other children
+  const headerChild = ReactChildren.toArray(children).find(
+    (child) => isValidElement(child) && child.type === CardHeader
+  );
+  const otherChildren = ReactChildren.toArray(children).filter(
+    (child) => !(isValidElement(child) && child.type === CardHeader)
+  );
+
   return (
     <div
       className={`bg-white rounded-md border border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 ${className}`}
     >
-      {children}
+      {collapsible && headerChild
+        ? cloneElement(headerChild as React.ReactElement, {
+            isCollapsed,
+            setIsCollapsed,
+            collapsible,
+          })
+        : headerChild}
+      {!isCollapsed && otherChildren}
     </div>
   );
 }
 
-export function CardHeader({ children }: { children: React.ReactNode }) {
+export function CardHeader({
+  children,
+  isCollapsed,
+  setIsCollapsed,
+  collapsible,
+}: {
+  children: React.ReactNode;
+  isCollapsed?: boolean;
+  setIsCollapsed?: (value: boolean) => void;
+  collapsible?: boolean;
+}) {
   return (
-    <div className='px-4 py-3 flex items-center justify-between border-b border-gray-200 dark:border-neutral-700'>
+    <div
+      className={`px-4 py-3 flex items-center justify-between border-gray-200 dark:border-neutral-700 ${
+        collapsible ? 'cursor-pointer' : ''
+      } ${isCollapsed ? 'border-b-0' : 'border-b'}`}
+      onClick={() => setIsCollapsed?.(!isCollapsed)}
+    >
       {children}
+      {collapsible && (
+        <i className={`fas fa-chevron-${isCollapsed ? 'down' : 'up'}`} />
+      )}
     </div>
   );
 }
