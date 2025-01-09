@@ -3,6 +3,7 @@ import { getNavItemByCategoryAndTool, getNavItemById } from '@/common/utils';
 import Content from '@/components/content';
 import PageTitle from '@/components/page-title';
 import { notFound } from 'next/navigation';
+import ogImage from '@/app/cover.png';
 
 interface ToolPageProps {
   params: Promise<{ categoryId: string; toolId: string }>;
@@ -42,6 +43,23 @@ export async function generateMetadata({ params }: ToolPageProps) {
     description: tool.description,
     applicationName: appConfig.name,
     keywords: tool.keywords,
+    creator: appConfig.creator,
+    openGraph: {
+      images: [{ url: ogImage.src, width: 1200, height: 640 }],
+      type: 'website',
+      siteName: appConfig.name,
+      title: `${tool.pageTitle} | ${appConfig.name}`,
+      description: tool.description,
+      url: `${appConfig.url}/${tool.category}/${tool.id}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: 'devease.app',
+      creator: '@mgoyal98',
+      images: [{ url: ogImage.src, width: 1200, height: 640 }],
+      title: `${tool.pageTitle} | ${appConfig.name}`,
+      description: tool.description,
+    },
   };
 }
 

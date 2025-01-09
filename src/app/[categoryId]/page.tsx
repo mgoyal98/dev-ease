@@ -4,6 +4,7 @@ import Content from '@/components/content';
 import PageTitle from '@/components/page-title';
 import ToolCard from '@/components/tool-card';
 import { notFound } from 'next/navigation';
+import ogImage from '@/app/cover.png';
 
 interface CategoryPageProps {
   params: Promise<{ categoryId: string }>;
@@ -51,6 +52,23 @@ export async function generateMetadata({ params }: CategoryPageProps) {
         (tool) => `${tool.id} ${categoryId}`
       ),
     ],
+    creator: appConfig.creator,
+    openGraph: {
+      images: [{ url: ogImage.src, width: 1200, height: 640 }],
+      type: 'website',
+      siteName: appConfig.name,
+      title: `${categoryData.name} | ${appConfig.name}`,
+      description: categoryData.description,
+      url: `${appConfig.url}/${categoryId}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: 'devease.app',
+      creator: '@mgoyal98',
+      images: [{ url: ogImage.src, width: 1200, height: 640 }],
+      title: `${categoryData.name} | ${appConfig.name}`,
+      description: categoryData.description,
+    },
   };
 }
 

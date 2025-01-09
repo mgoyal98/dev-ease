@@ -4,6 +4,8 @@ A modern web application built with Next.js that provides a collection of essent
 
 🌐 **[Visit DevEase](https://devease.app)**
 
+![DevEase](src/app/cover.png?raw=true 'DevEase')
+
 ## 🚀 Features
 
 - 💻 **Technical Features**
@@ -149,7 +151,6 @@ If you find this project helpful, please consider:
 ## Questions or Feedback?
 
 If you have any questions, issues, or suggestions, feel free to open a GitHub [issue]<https://github.com/mgoyal98/dev-ease/issues>. Thank you for using DevEase!
-
 
 ## 📄 License
 

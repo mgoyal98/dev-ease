@@ -6,6 +6,7 @@ import { appConfig } from '@/common/constants';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import ogImage from './cover.png';
 
 const publicSans = Public_Sans({
   weight: ['300', '400', '500', '600', '700'],
@@ -26,6 +27,22 @@ export const metadata: Metadata = {
   description: appConfig.description,
   keywords: appConfig.keywords,
   creator: appConfig.creator,
+  openGraph: {
+    images: [{ url: ogImage.src, width: 1200, height: 640 }],
+    type: 'website',
+    siteName: appConfig.name,
+    title: appConfig.pageTitle,
+    description: appConfig.description,
+    url: appConfig.url,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: 'devease.app',
+    creator: '@mgoyal98',
+    images: [{ url: ogImage.src, width: 1200, height: 640 }],
+    title: appConfig.pageTitle,
+    description: appConfig.description,
+  },
 };
 
 export default function RootLayout({
