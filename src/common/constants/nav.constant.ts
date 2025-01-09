@@ -6,6 +6,7 @@ import Base64TextEncoderDecoderTool from '@/tools/base64-text-encoder-decoder';
 import JwtTool from '@/tools/jwt';
 import EpochTool from '@/tools/epoch';
 import JsonToCsvTool from '@/tools/json-to-csv';
+import PasswordGeneratorTool from '@/tools/password';
 
 export const navCategories: Record<string, INavCategory> = {
   generators: {
@@ -82,6 +83,33 @@ export const navItems: INavItem[] = [
       'random UUID generator',
       'UUID generator for developers',
       'UUID tool online',
+    ],
+  },
+
+  {
+    id: 'password-generator',
+    category: navCategories.generators.id,
+    icon: 'far fa-fw fa-key',
+    name: 'Password Generator',
+    pageTitle: 'Password Generator',
+    description:
+      'Effortlessly create strong, random passwords to protect sensitive data with our advanced password generation tool.',
+    route: `${navCategories.generators.route}/password-generator`,
+    visibleOnSidebar: true,
+    page: PasswordGeneratorTool,
+    keywords: [
+      'password',
+      'password generator',
+      'password generator tool',
+      'password generator online',
+      'strong passwords',
+      'random password generator',
+      'secure passwords',
+      'online password generator',
+      'password creation tool',
+      'free password generator',
+      'password security',
+      'password tool online',
     ],
   },
 

@@ -8,4 +8,5 @@ export enum StorageKeys {
   JwtConfigs = 'jwt-configs',
   EpochConfigs = 'epoch-configs',
   JsonToCsvConfigs = 'json-to-csv-configs',
+  PasswordConfigs = 'password-configs',
 }

@@ -125,36 +125,6 @@ npm run lint       # Run ESLint
 npm run format     # Run Prettier
 ```
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch:
-
-```bash
-git checkout -b feature/amazing-feature
-```
-
-3. Commit your changes:
-
-```bash
-git commit -m 'Add some amazing feature'
-```
-
-4. Push to the branch:
-
-```bash
-git push origin feature/amazing-feature
-```
-
-5. Open a Pull Request
-
-### Contribution Guidelines
-
-- Write clear, descriptive commit messages
-- Update documentation as needed
-- Add tests for new features
-- Follow the existing code style
-
 ## 🌟 Support
 
 If you find this project helpful, please consider:
@@ -166,7 +136,6 @@ If you find this project helpful, please consider:
 ## 📫 Quick Links
 
 - 🏠 [DevEase Website](https://devease.app)
-- 📖 [Documentation](https://devease.app/docs)
 - 💻 [GitHub Repository](https://github.com/mgoyal98/dev-ease)
 - 🐛 [Issue Tracker](https://github.com/mgoyal98/dev-ease/issues)
 
@@ -179,7 +148,7 @@ If you find this project helpful, please consider:
 
 ## Questions or Feedback?
 
-If you have any questions, issues, or suggestions, feel free to open a GitHub [issue]<https://github.com/mgoyal98/dev-ease/issues>. Thank you for using PDF Pipeline!
+If you have any questions, issues, or suggestions, feel free to open a GitHub [issue]<https://github.com/mgoyal98/dev-ease/issues>. Thank you for using DevEase!
 
 
 ## 📄 License
