@@ -95,6 +95,7 @@ export default function Sidebar({
                             icon={navItem.icon}
                             active={navItem.route === pathname}
                             route={navItem.route ?? '/'}
+                            onToggleSidebar={onToggleSidebar}
                           />
                         );
                       }

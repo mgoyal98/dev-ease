@@ -15,8 +15,13 @@ export default function MainLayout({
 
   useEffect(() => {
     const savedSidebarOpen = localStorage.getItem(StorageKeys.SidebarOpen);
+    // Check if window width is >= 1024px (lg breakpoint in Tailwind)
+    const isLargeScreen = window.innerWidth >= 1024;
+    
     setIsSidebarOpen(
-      savedSidebarOpen?.length ? savedSidebarOpen === 'true' : true
+      savedSidebarOpen?.length 
+        ? savedSidebarOpen === 'true' 
+        : isLargeScreen // Default to true only for large screens
     );
 
     // Check the user's preference from local storage

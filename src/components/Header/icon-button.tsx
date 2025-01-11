@@ -46,7 +46,6 @@ export default function HeaderIconButton({
           data-tooltip-place='bottom'
         >
           <i className={`far fa-fw ${icon}`}></i>
-          <Tooltip id={`${id}-tooltip`} />
         </button>
       ) : (
         <Link
@@ -59,9 +58,12 @@ export default function HeaderIconButton({
           data-tooltip-place='bottom'
         >
           <i className={`far fa-fw ${icon}`}></i>
-          <Tooltip id={`${id}-tooltip`} />
         </Link>
       )}
+      <Tooltip
+        id={`${id}-tooltip`}
+        place={id === 'toggle-sidebar' ? 'right' : 'bottom'}
+      />
     </>
   );
 }

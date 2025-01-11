@@ -29,15 +29,26 @@ export function SidebarItem({
   icon,
   active,
   route,
+  onToggleSidebar,
 }: {
   label: string;
   icon: string;
   active?: boolean;
   route: string;
+  onToggleSidebar: () => void;
 }) {
+  const handleCloseSidebar = () => {
+    // Check if window width is >= 1024px (lg breakpoint in Tailwind)
+    const isLargeScreen = window.innerWidth >= 1024;
+    if (!isLargeScreen) {
+      onToggleSidebar();
+    }
+  };
+
   return (
     <Link
       href={route}
+      onClick={handleCloseSidebar}
       className={`flex items-center w-full  gap-3 pr-4 pl-6 py-3 text-sm hover:bg-emerald-50 dark:hover:bg-zinc-800 border-r-2 border-transparent transition-colors duration-200 ${
         active
           ? 'border-r-emerald-500 bg-emerald-50 dark:bg-zinc-800 text-emerald-500 dark:text-emerald-500 font-medium'
