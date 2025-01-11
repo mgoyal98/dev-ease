@@ -43,7 +43,6 @@ export default function HeaderIconButton({
           onClick={iconButtonOnClick}
           data-tooltip-id={`${id}-tooltip`}
           data-tooltip-content={name}
-          data-tooltip-place='bottom'
         >
           <i className={`far fa-fw ${icon}`}></i>
         </button>
@@ -55,7 +54,6 @@ export default function HeaderIconButton({
           target={target}
           data-tooltip-id={`${id}-tooltip`}
           data-tooltip-content={name}
-          data-tooltip-place='bottom'
         >
           <i className={`far fa-fw ${icon}`}></i>
         </Link>
