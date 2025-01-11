@@ -22,7 +22,7 @@ export default function SelectBox({
   return (
     <Listbox value={value} onChange={onChange}>
       <div className={`relative ${className || ''}`}>
-        <ListboxButton className='grid w-full cursor-default grid-cols-1 rounded-md bg-white dark:bg-neutral-700 py-1.5 pl-3 pr-2 text-left outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-zinc-700 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-emerald-500 sm:text-sm/6'>
+        <ListboxButton className='grid w-full cursor-pointer grid-cols-1 rounded-md bg-white dark:bg-neutral-700 py-1.5 pl-3 pr-2 text-left outline outline-1 -outline-offset-1 outline-gray-300 dark:outline-zinc-700 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-emerald-500 sm:text-sm/6'>
           <span className='col-start-1 row-start-1 flex items-center gap-3 pr-6'>
             <span className='block truncate'>
               {options.find((o) => o.value === value)?.text}
@@ -41,7 +41,7 @@ export default function SelectBox({
             <ListboxOption
               key={option.value}
               value={option.value}
-              className='group relative cursor-default select-none py-2 pl-3 pr-9  data-[focus]:bg-emerald-500 data-[focus]:text-white data-[focus]:outline-none'
+              className='group relative cursor-pointer select-none py-2 pl-3 pr-9  data-[focus]:bg-emerald-500 data-[focus]:text-white data-[focus]:outline-none'
             >
               <div className='flex items-center'>
                 <span className='ml-3 block truncate font-normal group-data-[selected]:font-semibold'>
