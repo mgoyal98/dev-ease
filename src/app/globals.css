@@ -26,7 +26,6 @@ body {
   --fa-secondary-color: white;
 }
 
-
 .ace-devease-theme {
   @apply text-base rounded-md outline outline-1 outline-gray-300 dark:outline-zinc-700 h-full;
   font-family: var(--font-roboto-mono);
@@ -88,4 +87,11 @@ body {
 .ace-devease-theme .ace_indent-guide {
   @apply border-r border-r-slate-100 dark:border-r-zinc-600;
   background: none;
+}
+.ace-devease-theme .ace_keyword {
+  @apply text-violet-600 dark:text-violet-300;
+}
+
+.ace-devease-theme .ace_marker-layer .ace_selection {
+  @apply bg-zinc-200 dark:bg-zinc-800;
 }

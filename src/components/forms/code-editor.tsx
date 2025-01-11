@@ -3,6 +3,7 @@
 import AceEditor from 'react-ace';
 
 import 'ace-builds/src-noconflict/mode-json';
+import 'ace-builds/src-noconflict/mode-sql';
 
 import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";

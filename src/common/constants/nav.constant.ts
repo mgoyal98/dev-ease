@@ -7,6 +7,7 @@ import JwtTool from '@/tools/jwt';
 import EpochTool from '@/tools/epoch';
 import JsonToCsvTool from '@/tools/json-to-csv';
 import PasswordGeneratorTool from '@/tools/password';
+import SqlFormatterTool from '@/tools/sql-formatter';
 
 export const navCategories: Record<string, INavCategory> = {
   generators: {
@@ -53,14 +54,14 @@ export const navCategories: Record<string, INavCategory> = {
 export const navItems: INavItem[] = [
   // generators
   {
-    id: 'uuid',
+    id: 'uuid-generator',
     category: navCategories.generators.id,
     icon: 'far fa-fw fa-hashtag',
     name: 'UUID',
     pageTitle: 'UUID Generator',
     description:
       'Quickly generate universally unique identifiers (UUIDs) in various versions and configurations to meet your specific requirements.',
-    route: `${navCategories.generators.route}/uuid`,
+    route: `${navCategories.generators.route}/uuid-generator`,
     visibleOnSidebar: true,
     page: UuidPage,
     keywords: [
@@ -115,14 +116,14 @@ export const navItems: INavItem[] = [
 
   // formatters
   {
-    id: 'json',
+    id: 'json-formatter',
     category: navCategories.formatters.id,
     icon: 'far fa-fw fa-brackets-curly',
     name: 'JSON Formatter',
     pageTitle: 'JSON Formatter',
     description:
       'Easily format, minify, and beautify JSON data for improved readability and optimized usage.',
-    route: `${navCategories.formatters.route}/json`,
+    route: `${navCategories.formatters.route}/json-formatter`,
     visibleOnSidebar: true,
     page: JsonFormatterTool,
     keywords: [
@@ -146,17 +147,50 @@ export const navItems: INavItem[] = [
       'JSON tool online',
     ],
   },
+  {
+    id: 'sql-formatter',
+    category: navCategories.formatters.id,
+    icon: 'far fa-fw fa-code',
+    name: 'SQL Formatter',
+    pageTitle: 'SQL Formatter',
+    description:
+      'Refine your SQL queries for improved readability and consistency with our intuitive SQL formatting tool.',
+    route: `${navCategories.formatters.route}/sql-formatter`,
+    visibleOnSidebar: true,
+    page: SqlFormatterTool,
+    keywords: [
+      'sql',
+      'sql formatter',
+      'sql beautifier',
+      'sql minifier',
+      'SQL formatter',
+      'online SQL formatter',
+      'format SQL',
+      'SQL minifier',
+      'SQL viewer',
+      'SQL prettifier',
+      'SQL formatter',
+      'format SQL queries',
+      'SQL beautifier',
+      'SQL formatting tool',
+      'improve SQL readability',
+      'clean up SQL code',
+      'SQL query consistency',
+      'SQL syntax tool',
+      'SQL tool online',
+    ],
+  },
 
   // encoders-decoders
   {
-    id: 'base64-text',
+    id: 'base64-text-encoder-decoder',
     category: navCategories['encoders-decoders'].id,
     icon: 'far fa-fw fa-file-word',
     name: 'Base64 Text',
     pageTitle: 'Base64 Text Encoder and Decoder',
     description:
       'Effortlessly encode and decode text using Base64 encoding for secure and efficient data handling.',
-    route: `${navCategories['encoders-decoders'].route}/base64-text`,
+    route: `${navCategories['encoders-decoders'].route}/base64-text-encoder-decoder`,
     visibleOnSidebar: true,
     page: Base64TextEncoderDecoderTool,
     keywords: [
@@ -181,14 +215,14 @@ export const navItems: INavItem[] = [
   },
 
   {
-    id: 'jwt',
+    id: 'jwt-encoder-decoder',
     category: navCategories['encoders-decoders'].id,
     icon: 'far fa-fw fa-key',
     name: 'JWT',
     pageTitle: 'JWT Encoder and Decoder',
     description:
       'Encode and decode JSON Web Tokens (JWT). Easily inspect JWT headers, payloads, and signatures.',
-    route: `${navCategories['encoders-decoders'].route}/jwt`,
+    route: `${navCategories['encoders-decoders'].route}/jwt-encoder-decoder`,
     visibleOnSidebar: true,
     page: JwtTool,
     keywords: [
@@ -216,14 +250,14 @@ export const navItems: INavItem[] = [
   // converters
 
   {
-    id: 'epoch',
+    id: 'epoch-converter',
     category: navCategories.converters.id,
     icon: 'far fa-fw fa-clock',
     name: 'Epoch Converter',
     pageTitle: 'Epoch Converter',
     description:
       'Convert between epoch timestamps and human-readable dates. Calculate time durations and get current epoch time.',
-    route: `${navCategories.converters.route}/epoch`,
+    route: `${navCategories.converters.route}/epoch-converter`,
     visibleOnSidebar: true,
     page: EpochTool,
     keywords: [
@@ -249,14 +283,14 @@ export const navItems: INavItem[] = [
   },
 
   {
-    id: 'json-to-csv',
+    id: 'json-to-csv-converter',
     category: navCategories.converters.id,
     icon: 'far fa-fw fa-file-csv',
     name: 'JSON to CSV',
     pageTitle: 'JSON to CSV Converter',
     description:
       'Convert JSON data to CSV format. Easily transform JSON arrays into downloadable CSV files.',
-    route: `${navCategories.converters.route}/json-to-csv`,
+    route: `${navCategories.converters.route}/json-to-csv-converter`,
     visibleOnSidebar: true,
     page: JsonToCsvTool,
     keywords: [

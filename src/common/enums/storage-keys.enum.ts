@@ -9,4 +9,5 @@ export enum StorageKeys {
   EpochConfigs = 'epoch-configs',
   JsonToCsvConfigs = 'json-to-csv-configs',
   PasswordConfigs = 'password-configs',
+  SqlFormatterConfigs = 'sql-formatter-configs',
 }
