@@ -10,7 +10,7 @@ export default function ClipboardText({
 }) {
   return (
     <button
-      className='inline-flex bg-slate-100 font-semibold px-2 ml-1 py-2 rounded items-center gap-2'
+      className='inline-flex bg-slate-100 font-semibold px-3 ml-1 py-2 rounded-md items-center gap-2 dark:bg-neutral-700'
       data-tooltip-id={`${id}-tooltip`}
       data-tooltip-content='Copy'
       onClick={() => handleCopy(text)}
