@@ -9,4 +9,5 @@ export const appConfig = {
   keywords:
     'tech tools, development, tools, ease, ease development, ease tools, uuid, json, csv, base64, jwt, epoch, Generators, Converters, Encoder/Decoder, Formatters, developer tools, data tools, tech utilities, productivity tools, workflow optimization, data handling, API tools, software development',
   creator: 'Madhur Goyal',
+  manifestDescription: 'DevEase is a comprehensive toolkit for tech professionals, offering utilities for UUID creation, JSON-to-CSV conversion, Base64 encoding, JWT handling, and more, streamlining workflows across multiple tasks.',
 };
