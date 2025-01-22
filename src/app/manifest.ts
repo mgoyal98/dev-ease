@@ -33,9 +33,16 @@ export default function manifest(): MetadataRoute.Manifest {
     screenshots: [
       {
         src: '/cover.png',
-        sizes: '1280x720',
+        sizes: '1280x640',
         type: 'image/png',
         form_factor: 'wide',
+        label: 'Application',
+      },
+      {
+        src: '/screenshot-mobile.png',
+        sizes: '1170x2532',
+        type: 'image/png',
+        form_factor: 'narrow',
         label: 'Application',
       },
     ],

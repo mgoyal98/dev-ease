@@ -67,7 +67,14 @@ export default function Sidebar({
         </Link>
 
         {/* Navigation Holder */}
-        <div className='flex-1 flex flex-col mt-4 overflow-y-scroll'>
+        <div
+          className='flex-1 flex flex-col mt-4 overflow-y-scroll'
+          style={{
+            scrollbarWidth: 'thin',
+            scrollbarGutter: 'stable',
+            scrollbarColor: '#eaeaea #0000',
+          }}
+        >
           {/* Navigation */}
           {Object.values(navCategories).map((category, catIndex) => {
             if (!category.visibleOnSidebar) return null; // Skip items not visible on the sidebar
