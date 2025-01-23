@@ -22,6 +22,7 @@
     "jose": "^5.9.6",
     "jwt-encode": "^1.0.1",
     "next": "15.0.3",
+    "next-pwa": "^5.6.0",
     "react": "18.3.1",
     "react-ace": "^13.0.0",
     "react-dom": "18.3.1",
@@ -31,6 +32,7 @@
   },
   "devDependencies": {
     "@types/jwt-encode": "^1.0.3",
+    "@types/next-pwa": "^5.6.9",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
