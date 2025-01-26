@@ -8,6 +8,7 @@ import EpochTool from '@/tools/epoch';
 import JsonToCsvTool from '@/tools/json-to-csv';
 import PasswordGeneratorTool from '@/tools/password';
 import SqlFormatterTool from '@/tools/sql-formatter';
+import Base64FileTool from '@/tools/base64-file';
 
 export const navCategories: Record<string, INavCategory> = {
   generators: {
@@ -211,6 +212,36 @@ export const navItems: INavItem[] = [
       'free Base64 decoder',
       'Base64 tool online',
       'Base64 utility for developers',
+    ],
+  },
+
+  {
+    id: 'base64-file-encoder-decoder',
+    category: navCategories['encoders-decoders'].id,
+    icon: 'far fa-fw fa-file',
+    name: 'Base64 File',
+    pageTitle: 'Base64 File Encoder and Decoder',
+    description:
+      'Convert files to Base64 and decode Base64 strings back to files. Preview Base64 encoded images directly.',
+    route: `${navCategories['encoders-decoders'].route}/base64-file-encoder-decoder`,
+    visibleOnSidebar: true,
+    page: Base64FileTool,
+    keywords: [
+      'base64 file',
+      'base64 file encoder',
+      'base64 file decoder',
+      'file to base64',
+      'base64 to file',
+      'base64 image preview',
+      'base64 file converter',
+      'encode file to base64',
+      'decode base64 to file',
+      'base64 image encoder',
+      'base64 image decoder',
+      'file base64 conversion',
+      'online base64 file converter',
+      'base64 file utility',
+      'base64 file tool',
     ],
   },
 

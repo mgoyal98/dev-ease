@@ -7,6 +7,7 @@ import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import ogImage from './cover.png';
+import { Toaster } from 'sonner';
 
 const publicSans = Public_Sans({
   weight: ['300', '400', '500', '600', '700'],
@@ -59,6 +60,7 @@ export default function RootLayout({
         className={`${publicSans.variable} ${robotoMono.variable} antialiased dark:bg-backgroundDark dark:text-foregroundDark bg-background text-foreground overflow-x-hidden`}
       >
         <MainLayout>{children}</MainLayout>
+        <Toaster richColors />
         <GoogleAnalytics
           gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ?? ''}
         />
