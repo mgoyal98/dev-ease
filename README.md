@@ -16,6 +16,15 @@ A modern web application built with Next.js that provides a collection of essent
   - Google Analytics integration
   - Performance monitoring with Vercel Analytics
 
+- 🛠️ **Development Tools**
+  - JSON formatter with epoch timestamp tooltips (hover over numbers to see formatted timestamps)
+  - SQL formatter
+  - JWT decoder
+  - Password generator
+  - UUID generator
+  - Base64 encoder/decoder
+  - Epoch converter
+
 ## 🔧 Prerequisites
 
 Before you begin, ensure you have installed:
