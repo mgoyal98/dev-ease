@@ -35,6 +35,11 @@ export default function MainLayout({
     } else {
       setIsDarkMode(prefersDark);
     }
+
+    // clear all local storage
+    if(!localStorage.getItem(StorageKeys.EpochConfigs)) {
+      localStorage.clear();
+    }
   }, []);
 
   useEffect(() => {

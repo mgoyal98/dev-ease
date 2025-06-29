@@ -72,7 +72,7 @@ export default function EpochTool() {
 
   useEffect(() => {
     localStorage.setItem(
-      StorageKeys.JsonFormatterConfigs,
+      StorageKeys.EpochConfigs,
       JSON.stringify(configs)
     );
   }, [configs]);
