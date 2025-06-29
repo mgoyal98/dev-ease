@@ -2,9 +2,8 @@ import { appConfig, navItems } from '@/common/constants';
 import { getNavItemByCategoryAndTool, getNavItemById } from '@/common/utils';
 import Content from '@/components/content';
 import PageTitle from '@/components/page-title';
-import { notFound, permanentRedirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import ogImage from '@/app/cover.png';
-import { permanentRedirectMap } from '@/common/utils/permanent-redirect-map';
 
 interface ToolPageProps {
   params: Promise<{ categoryId: string; toolId: string }>;
@@ -12,10 +11,6 @@ interface ToolPageProps {
 
 export default async function ToolPage({ params }: ToolPageProps) {
   const { categoryId, toolId } = await params;
-
-  if (permanentRedirectMap[toolId]) {
-    permanentRedirect(permanentRedirectMap[toolId]);
-  }
 
   const data = getNavItemByCategoryAndTool(categoryId, toolId);
   if (!data) {
