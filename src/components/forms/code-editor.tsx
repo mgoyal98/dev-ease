@@ -41,6 +41,11 @@ export default function CodeEditor({
   const tooltipRef = useRef<TooltipRefProps | null>(null);
   const [show, setShow] = useState(false);
 
+  // build one regex that only looks for *your* fields:
+  const fieldNames = EPOCH_FIELDS.join('|');
+  // e.g. "exp|iat|nbf|createdAt|…"
+  const re = new RegExp(`"(${fieldNames})"\\s*:\\s*(\\d+)`);
+
   useEffect(() => {
     if (!aceRef.current) {
       console.log('aceRef.current is null');
@@ -59,8 +64,12 @@ export default function CodeEditor({
       if (token?.type === 'constant.numeric') {
         // grab the raw line up to the number
         const line = session.getLine(row).slice(0, column + token.value.length);
+
+        const sub = line; // you already have the slice up to end of the number
+        const m = sub.match(re);
+
         // look for a JSON key immediately preceding:  "key": 12345
-        const m = line.match(/"(\w+)"\s*:\s*[\d]+$/);
+        // const m = line.match(/"(\w+)"\s*:\s*[\d]+$/);
         if (m && EPOCH_FIELDS.includes(m[1])) {
           const num = parseInt(token.value, 10);
 

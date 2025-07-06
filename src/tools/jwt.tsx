@@ -42,9 +42,11 @@ export default function JwtTool() {
   const [configs, setConfigs] = useState<JwtConfigs>(DEFAULT_CONFIGS);
 
   const [token, setToken] = useState<string>(
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkRldiBFYXNlIiwiaWF0IjoxNzM0OTI4MTQyfQ.IUC3yGFlakWjjtUA9ABw7aDhm2MIiKHeVff8iU1311c'
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkRldkVhc2UiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNzM1Njg5NjAwLCJleHAiOjI1NTYxNDM5OTl9.tlvBeWl47-bDa5z9McrgU2tseAmWsnehvM5nZtOCb-I'
   );
-  const [secret, setSecret] = useState<string>('your-256-bit-secret');
+  const [secret, setSecret] = useState<string>(
+    'a-string-secret-at-least-256-bits-long'
+  );
   const [verified, setVerified] = useState<boolean>(false);
   const [header, setHeader] = useState<string>('');
   const [payload, setPayload] = useState<string>('');
@@ -63,7 +65,7 @@ export default function JwtTool() {
 
   const verifyJwt = useCallback(async (token: string, secret: string) => {
     try {
-      await jwtVerify(token, Buffer.from(secret));
+      await jwtVerify(token, Buffer.from(secret), {});
       setVerified(true);
     } catch {
       setVerified(false);
