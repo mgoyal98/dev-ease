@@ -196,7 +196,9 @@ export default function EpochTool() {
         return timestamp.toString();
       }
 
-      return date.getTime().toString();
+      return configs.timeFormat === 'seconds'
+        ? Math.floor(date.getTime() / 1000).toString()
+        : date.getTime().toString();
     } catch {
       return 'Invalid date';
     }
