@@ -1,7 +1,7 @@
 import { appConfig, navItems } from '@/common/constants';
 import { getNavItemByCategoryAndTool, getNavItemById } from '@/common/utils';
 import Content from '@/components/content';
-import PageTitle from '@/components/page-title';
+import ToolPageTitle from '@/components/tool-page-title';
 import { notFound } from 'next/navigation';
 import ogImage from '@/app/cover.png';
 
@@ -18,7 +18,11 @@ export default async function ToolPage({ params }: ToolPageProps) {
   }
   return (
     <Content>
-      <PageTitle title={data.pageTitle} description={data.description} />
+      <ToolPageTitle
+        toolId={data.id}
+        title={data.pageTitle}
+        description={data.description}
+      />
 
       {data.page && <data.page />}
     </Content>

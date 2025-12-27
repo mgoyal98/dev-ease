@@ -3,11 +3,12 @@
 import { appConfig, navCategories } from '@/common/constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { SidebarItem, SidebarItemHeading } from './sidebar-items';
+import { SidebarItem, SidebarItemHeading, StarredSidebarItem } from './sidebar-items';
 import { StorageKeys } from '@/common/enums';
 import { useEffect, useState } from 'react';
 import { getNavItemsByCategory } from '@/common/utils';
 import ExternalLink from '@/components/external-link';
+import { useStarredTools } from '@/common/context';
 
 export default function Sidebar({
   isSidebarOpen,
@@ -19,6 +20,8 @@ export default function Sidebar({
   const [collapsedItems, setCollapsedItems] = useState<Record<string, boolean>>(
     {}
   );
+  const { getStarredTools, toggleStar } = useStarredTools();
+  const starredTools = getStarredTools();
 
   useEffect(() => {
     setCollapsedItems(
@@ -75,6 +78,33 @@ export default function Sidebar({
             scrollbarColor: '#eaeaea #0000',
           }}
         >
+          {/* Favorites Section */}
+          {starredTools.length > 0 && (
+            <div className='w-full'>
+              <SidebarItemHeading
+                label='Favorites'
+                icon='fas fa-star text-amber-500'
+                isOpen={!collapsedItems['favorites']}
+                onClick={() => toggleCollapsedItem('favorites')}
+              />
+              {!collapsedItems['favorites'] && (
+                <>
+                  {starredTools.map((navItem, navIndex) => (
+                    <StarredSidebarItem
+                      key={`starred-${navItem.id}-${navIndex}`}
+                      label={navItem.name}
+                      icon={navItem.icon}
+                      active={navItem.route === pathname}
+                      route={navItem.route ?? '/'}
+                      onToggleSidebar={onToggleSidebar}
+                      onUnstar={() => toggleStar(navItem.id)}
+                    />
+                  ))}
+                </>
+              )}
+            </div>
+          )}
+
           {/* Navigation */}
           {Object.values(navCategories).map((category, catIndex) => {
             if (!category.visibleOnSidebar) return null; // Skip items not visible on the sidebar
@@ -102,6 +132,7 @@ export default function Sidebar({
                             icon={navItem.icon}
                             active={navItem.route === pathname}
                             route={navItem.route ?? '/'}
+                            toolId={navItem.page ? navItem.id : undefined}
                             onToggleSidebar={onToggleSidebar}
                           />
                         );

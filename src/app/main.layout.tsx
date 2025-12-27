@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
 import { ColorModes, StorageKeys } from '@/common/enums';
+import { StarredToolsProvider } from '@/common/context';
 
 export default function MainLayout({
   children,
@@ -62,17 +63,19 @@ export default function MainLayout({
   };
 
   return (
-    <div className='w-full flex'>
-      <Sidebar isSidebarOpen={isSidebarOpen} onToggleSidebar={toggleSidebar} />
-      <div className='flex-1 flex-col overflow-x-hidden'>
-        <Header
-          onToggleSidebar={toggleSidebar}
-          isSidebarOpen={isSidebarOpen}
-          isDarkMode={isDarkMode}
-          onToggleDarkMode={() => setIsDarkMode((prev) => !prev)}
-        />
-        {children}
+    <StarredToolsProvider>
+      <div className='w-full flex'>
+        <Sidebar isSidebarOpen={isSidebarOpen} onToggleSidebar={toggleSidebar} />
+        <div className='flex-1 flex-col overflow-x-hidden'>
+          <Header
+            onToggleSidebar={toggleSidebar}
+            isSidebarOpen={isSidebarOpen}
+            isDarkMode={isDarkMode}
+            onToggleDarkMode={() => setIsDarkMode((prev) => !prev)}
+          />
+          {children}
+        </div>
       </div>
-    </div>
+    </StarredToolsProvider>
   );
 }
