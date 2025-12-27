@@ -48,6 +48,14 @@ export const navCategories: Record<string, INavCategory> = {
     description:
       'Quickly transform data between various formats with our versatile Converters.',
   },
+  utilities: {
+    id: 'utilities',
+    name: 'Utilities',
+    route: '/utilities',
+    visibleOnSidebar: true,
+    description:
+      'Test, validate, and compare your data with powerful debugging and analysis tools.',
+  },
   viewers: {
     id: 'viewers',
     name: 'Viewers',
@@ -431,13 +439,13 @@ export const navItems: INavItem[] = [
 
   {
     id: 'regex-tester',
-    category: navCategories.viewers.id,
+    category: navCategories.utilities.id,
     icon: 'far fa-fw fa-asterisk',
     name: 'Regex Tester',
     pageTitle: 'Regex Tester',
     description:
       'Test and debug regular expressions in real-time. See matches highlighted, capture groups, and detailed match information.',
-    route: `${navCategories.viewers.route}/regex-tester`,
+    route: `${navCategories.utilities.route}/regex-tester`,
     visibleOnSidebar: true,
     page: RegexTesterTool,
     keywords: [
@@ -470,13 +478,13 @@ export const navItems: INavItem[] = [
 
   {
     id: 'json-compare',
-    category: navCategories.viewers.id,
+    category: navCategories.utilities.id,
     icon: 'far fa-fw fa-code-compare',
     name: 'JSON Compare',
     pageTitle: 'JSON Compare',
     description:
       'Compare two JSON objects and see the differences. Identify added, removed, and changed values with detailed diff view.',
-    route: `${navCategories.viewers.route}/json-compare`,
+    route: `${navCategories.utilities.route}/json-compare`,
     visibleOnSidebar: true,
     page: JsonCompareTool,
     keywords: [
