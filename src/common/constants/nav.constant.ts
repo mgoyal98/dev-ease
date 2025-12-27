@@ -10,6 +10,7 @@ import PasswordGeneratorTool from '@/tools/password';
 import SqlFormatterTool from '@/tools/sql-formatter';
 import Base64FileTool from '@/tools/base64-file';
 import HtmlPreviewTool from '@/tools/html-preview';
+import UrlEncoderDecoderTool from '@/tools/url-encoder-decoder';
 
 export const navCategories: Record<string, INavCategory> = {
   generators: {
@@ -284,6 +285,43 @@ export const navItems: INavItem[] = [
       'online jwt decoder',
       'online jwt encoder',
       'jwt tool for developers',
+    ],
+  },
+
+  {
+    id: 'url-encoder-decoder',
+    category: navCategories['encoders-decoders'].id,
+    icon: 'far fa-fw fa-link',
+    name: 'URL Encoder / Decoder',
+    pageTitle: 'URL Encoder and Decoder',
+    description:
+      'Encode and decode URLs and URL components. Convert special characters to percent-encoded format and back.',
+    route: `${navCategories['encoders-decoders'].route}/url-encoder-decoder`,
+    visibleOnSidebar: true,
+    page: UrlEncoderDecoderTool,
+    keywords: [
+      'url encoder',
+      'url decoder',
+      'url encoding',
+      'url decoding',
+      'percent encoding',
+      'encode url',
+      'decode url',
+      'urlencode',
+      'urldecode',
+      'encodeURIComponent',
+      'decodeURIComponent',
+      'encodeURI',
+      'decodeURI',
+      'url escape',
+      'url unescape',
+      'query string encoder',
+      'query string decoder',
+      'online url encoder',
+      'online url decoder',
+      'url tool for developers',
+      'percent encode',
+      'special characters url',
     ],
   },
 
