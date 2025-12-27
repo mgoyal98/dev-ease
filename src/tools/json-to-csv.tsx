@@ -80,7 +80,13 @@ export default function JsonToCsvTool() {
           throw new Error('Input must be a non-empty JSON array');
         }
 
-        const headers = keyify(json[0]);
+        // Collect headers from all items to ensure nothing is missed
+        const headersSet = new Set<string>();
+        json.forEach((obj) => {
+          keyify(obj).forEach((key) => headersSet.add(key));
+        });
+        const headers = Array.from(headersSet);
+
         const rows = json.map((obj) =>
           headers.map((header) => {
             const value = getNestedValue(obj, header);
