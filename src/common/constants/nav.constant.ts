@@ -12,6 +12,7 @@ import Base64FileTool from '@/tools/base64-file';
 import HtmlPreviewTool from '@/tools/html-preview';
 import UrlEncoderDecoderTool from '@/tools/url-encoder-decoder';
 import RegexTesterTool from '@/tools/regex-tester';
+import JsonCompareTool from '@/tools/json-compare';
 
 export const navCategories: Record<string, INavCategory> = {
   generators: {
@@ -463,6 +464,41 @@ export const navItems: INavItem[] = [
       'regex analyzer',
       'online regex tester',
       'regex tool for developers',
+    ],
+  },
+
+  {
+    id: 'json-compare',
+    category: navCategories.viewers.id,
+    icon: 'far fa-fw fa-code-compare',
+    name: 'JSON Compare',
+    pageTitle: 'JSON Compare',
+    description:
+      'Compare two JSON objects and see the differences. Identify added, removed, and changed values with detailed diff view.',
+    route: `${navCategories.viewers.route}/json-compare`,
+    visibleOnSidebar: true,
+    page: JsonCompareTool,
+    keywords: [
+      'json compare',
+      'json diff',
+      'json difference',
+      'compare json',
+      'json comparison',
+      'diff json',
+      'json compare tool',
+      'json diff tool',
+      'compare two json',
+      'json diff viewer',
+      'json compare online',
+      'json difference checker',
+      'json comparison tool',
+      'json diff online',
+      'compare json objects',
+      'json delta',
+      'json changes',
+      'json diff checker',
+      'find json differences',
+      'json tool for developers',
     ],
   },
 
