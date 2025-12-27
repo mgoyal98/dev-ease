@@ -9,6 +9,7 @@ import JsonToCsvTool from '@/tools/json-to-csv';
 import PasswordGeneratorTool from '@/tools/password';
 import SqlFormatterTool from '@/tools/sql-formatter';
 import Base64FileTool from '@/tools/base64-file';
+import HtmlPreviewTool from '@/tools/html-preview';
 
 export const navCategories: Record<string, INavCategory> = {
   generators: {
@@ -42,6 +43,14 @@ export const navCategories: Record<string, INavCategory> = {
     visibleOnSidebar: true,
     description:
       'Quickly transform data between various formats with our versatile Converters.',
+  },
+  viewers: {
+    id: 'viewers',
+    name: 'Viewers',
+    route: '/viewers',
+    visibleOnSidebar: true,
+    description:
+      'Preview and visualize your code and data in real-time with our interactive viewers.',
   },
   links: {
     id: 'links',
@@ -343,6 +352,39 @@ export const navItems: INavItem[] = [
       'json to excel',
       'convert json data',
       'csv transformation',
+    ],
+  },
+
+  // viewers
+  {
+    id: 'html-preview',
+    category: navCategories.viewers.id,
+    icon: 'far fa-fw fa-browser',
+    name: 'HTML Preview',
+    pageTitle: 'HTML Preview',
+    description:
+      'Write HTML code and see a live preview instantly. Perfect for testing and prototyping HTML, CSS, and JavaScript snippets.',
+    route: `${navCategories.viewers.route}/html-preview`,
+    visibleOnSidebar: true,
+    page: HtmlPreviewTool,
+    keywords: [
+      'html preview',
+      'html viewer',
+      'html editor',
+      'live html preview',
+      'html renderer',
+      'html sandbox',
+      'html playground',
+      'html tester',
+      'preview html code',
+      'html css preview',
+      'online html editor',
+      'html live editor',
+      'html code viewer',
+      'test html online',
+      'html prototype',
+      'web preview',
+      'html tool',
     ],
   },
 

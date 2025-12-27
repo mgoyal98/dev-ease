@@ -6,6 +6,7 @@ import { Tooltip, TooltipRefProps } from 'react-tooltip';
 
 import 'ace-builds/src-noconflict/mode-json';
 import 'ace-builds/src-noconflict/mode-sql';
+import 'ace-builds/src-noconflict/mode-html';
 
 import 'ace-builds/src-min-noconflict/ext-searchbox';
 import 'ace-builds/src-min-noconflict/ext-language_tools';

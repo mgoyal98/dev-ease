@@ -10,4 +10,5 @@ export enum StorageKeys {
   JsonToCsvConfigs = 'json-to-csv-configs-v1',
   PasswordConfigs = 'password-configs-v1',
   SqlFormatterConfigs = 'sql-formatter-configs-v1',
+  HtmlPreviewConfigs = 'html-preview-configs-v1',
 }

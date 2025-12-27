@@ -80,8 +80,8 @@ export function CardTitle({ children }: { children: React.ReactNode }) {
   return <h2 className='font-semibold'>{children}</h2>;
 }
 
-export function CardContent({ children }: { children: React.ReactNode }) {
-  return <div className='p-5'>{children}</div>;
+export function CardContent({ children, className }: { children: React.ReactNode, className?: string }) {
+  return <div className={`p-5 ${className}`}>{children}</div>;
 }
 
 export function CardFooter({ children }: { children: React.ReactNode }) {
