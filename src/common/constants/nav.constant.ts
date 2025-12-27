@@ -14,6 +14,7 @@ import UrlEncoderDecoderTool from '@/tools/url-encoder-decoder';
 import RegexTesterTool from '@/tools/regex-tester';
 import JsonCompareTool from '@/tools/json-compare';
 import MarkdownPreviewTool from '@/tools/markdown-preview';
+import YamlJsonConverterTool from '@/tools/yaml-json-converter';
 
 export const navCategories: Record<string, INavCategory> = {
   generators: {
@@ -401,6 +402,41 @@ export const navItems: INavItem[] = [
       'json to excel',
       'convert json data',
       'csv transformation',
+    ],
+  },
+
+  {
+    id: 'yaml-json-converter',
+    category: navCategories.converters.id,
+    icon: 'fas fa-fw fa-exchange-alt',
+    name: 'YAML ↔ JSON',
+    pageTitle: 'YAML ↔ JSON Converter',
+    description:
+      'Convert between YAML and JSON formats. Perfect for DevOps users working with configuration files.',
+    route: `${navCategories.converters.route}/yaml-json-converter`,
+    visibleOnSidebar: true,
+    page: YamlJsonConverterTool,
+    keywords: [
+      'yaml to json',
+      'json to yaml',
+      'yaml converter',
+      'yaml json converter',
+      'convert yaml to json',
+      'convert json to yaml',
+      'yaml parser',
+      'json parser',
+      'devops',
+      'kubernetes',
+      'docker compose',
+      'configuration converter',
+      'yaml transformer',
+      'json transformer',
+      'config file converter',
+      'ansible',
+      'helm',
+      'ci cd',
+      'yml to json',
+      'json to yml',
     ],
   },
 

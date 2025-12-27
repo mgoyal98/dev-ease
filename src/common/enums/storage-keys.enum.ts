@@ -15,4 +15,5 @@ export enum StorageKeys {
   RegexTesterConfigs = 'regex-tester-configs-v1',
   JsonCompareConfigs = 'json-compare-configs-v1',
   MarkdownPreviewConfigs = 'markdown-preview-configs-v1',
+  YamlJsonConverterConfigs = 'yaml-json-converter-configs-v1',
 }
