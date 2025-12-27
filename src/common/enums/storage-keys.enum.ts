@@ -12,4 +12,5 @@ export enum StorageKeys {
   SqlFormatterConfigs = 'sql-formatter-configs-v1',
   HtmlPreviewConfigs = 'html-preview-configs-v1',
   UrlEncoderDecoderConfigs = 'url-encoder-decoder-configs-v1',
+  RegexTesterConfigs = 'regex-tester-configs-v1',
 }

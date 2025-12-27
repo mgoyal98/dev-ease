@@ -11,6 +11,7 @@ import SqlFormatterTool from '@/tools/sql-formatter';
 import Base64FileTool from '@/tools/base64-file';
 import HtmlPreviewTool from '@/tools/html-preview';
 import UrlEncoderDecoderTool from '@/tools/url-encoder-decoder';
+import RegexTesterTool from '@/tools/regex-tester';
 
 export const navCategories: Record<string, INavCategory> = {
   generators: {
@@ -423,6 +424,45 @@ export const navItems: INavItem[] = [
       'html prototype',
       'web preview',
       'html tool',
+    ],
+  },
+
+  {
+    id: 'regex-tester',
+    category: navCategories.viewers.id,
+    icon: 'far fa-fw fa-asterisk',
+    name: 'Regex Tester',
+    pageTitle: 'Regex Tester',
+    description:
+      'Test and debug regular expressions in real-time. See matches highlighted, capture groups, and detailed match information.',
+    route: `${navCategories.viewers.route}/regex-tester`,
+    visibleOnSidebar: true,
+    page: RegexTesterTool,
+    keywords: [
+      'regex',
+      'regex tester',
+      'regex debugger',
+      'regular expression',
+      'regex validator',
+      'regex matcher',
+      'test regex',
+      'regex pattern',
+      'regex online',
+      'regex101',
+      'regex checker',
+      'regex editor',
+      'regex playground',
+      'regex tool',
+      'pattern matching',
+      'regex groups',
+      'capture groups',
+      'regex flags',
+      'javascript regex',
+      'regex helper',
+      'regex builder',
+      'regex analyzer',
+      'online regex tester',
+      'regex tool for developers',
     ],
   },
 
