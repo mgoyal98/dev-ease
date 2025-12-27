@@ -13,6 +13,7 @@ import HtmlPreviewTool from '@/tools/html-preview';
 import UrlEncoderDecoderTool from '@/tools/url-encoder-decoder';
 import RegexTesterTool from '@/tools/regex-tester';
 import JsonCompareTool from '@/tools/json-compare';
+import MarkdownPreviewTool from '@/tools/markdown-preview';
 
 export const navCategories: Record<string, INavCategory> = {
   generators: {
@@ -499,6 +500,42 @@ export const navItems: INavItem[] = [
       'json diff checker',
       'find json differences',
       'json tool for developers',
+    ],
+  },
+
+  {
+    id: 'markdown-preview',
+    category: navCategories.viewers.id,
+    icon: 'far fa-fw fa-file-alt',
+    name: 'Markdown Preview',
+    pageTitle: 'Markdown Preview',
+    description:
+      'Write markdown and see a live preview instantly. Supports headers, lists, code blocks, tables, links, and more.',
+    route: `${navCategories.viewers.route}/markdown-preview`,
+    visibleOnSidebar: true,
+    page: MarkdownPreviewTool,
+    keywords: [
+      'markdown',
+      'markdown preview',
+      'markdown editor',
+      'markdown viewer',
+      'live markdown',
+      'markdown to html',
+      'md preview',
+      'markdown renderer',
+      'markdown parser',
+      'markdown online',
+      'preview markdown',
+      'markdown tool',
+      'write markdown',
+      'markdown live editor',
+      'github markdown',
+      'gfm',
+      'markdown table',
+      'markdown code block',
+      'markdown formatting',
+      'markdown syntax',
+      'markdown tool for developers',
     ],
   },
 

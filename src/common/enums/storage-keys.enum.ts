@@ -14,4 +14,5 @@ export enum StorageKeys {
   UrlEncoderDecoderConfigs = 'url-encoder-decoder-configs-v1',
   RegexTesterConfigs = 'regex-tester-configs-v1',
   JsonCompareConfigs = 'json-compare-configs-v1',
+  MarkdownPreviewConfigs = 'markdown-preview-configs-v1',
 }
