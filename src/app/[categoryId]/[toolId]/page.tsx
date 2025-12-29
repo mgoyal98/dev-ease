@@ -42,6 +42,8 @@ export async function generateMetadata({ params }: ToolPageProps) {
     };
   }
 
+  const canonicalUrl = `${appConfig.url}/${tool.category}/${tool.id}`;
+
   // Metadata based on the category
   return {
     title: `${tool.pageTitle} | ${appConfig.name}`,
@@ -49,13 +51,27 @@ export async function generateMetadata({ params }: ToolPageProps) {
     applicationName: appConfig.name,
     keywords: tool.keywords,
     creator: appConfig.creator,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
     openGraph: {
       images: [{ url: ogImage.src, width: 1200, height: 640 }],
       type: 'website',
       siteName: appConfig.name,
       title: `${tool.pageTitle} | ${appConfig.name}`,
       description: tool.description,
-      url: `${appConfig.url}/${tool.category}/${tool.id}`,
+      url: canonicalUrl,
     },
     twitter: {
       card: 'summary_large_image',

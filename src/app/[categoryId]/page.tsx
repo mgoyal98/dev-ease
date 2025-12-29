@@ -42,6 +42,8 @@ export async function generateMetadata({ params }: CategoryPageProps) {
     };
   }
 
+  const canonicalUrl = `${appConfig.url}/${categoryId}`;
+
   // Metadata based on the category
   return {
     title: `${categoryData.name} | ${appConfig.name}`,
@@ -53,13 +55,27 @@ export async function generateMetadata({ params }: CategoryPageProps) {
       ),
     ],
     creator: appConfig.creator,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
     openGraph: {
       images: [{ url: ogImage.src, width: 1200, height: 640 }],
       type: 'website',
       siteName: appConfig.name,
       title: `${categoryData.name} | ${appConfig.name}`,
       description: categoryData.description,
-      url: `${appConfig.url}/${categoryId}`,
+      url: canonicalUrl,
     },
     twitter: {
       card: 'summary_large_image',

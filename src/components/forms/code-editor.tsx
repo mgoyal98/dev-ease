@@ -152,6 +152,22 @@ export default function CodeEditor({
         name={id}
         editorProps={{ $blockScrolling: true }}
       />
+      {/* SSR fallback for search engines - hidden when JS loads */}
+      <noscript>
+        <pre
+          style={{
+            whiteSpace: 'pre-wrap',
+            wordBreak: 'break-word',
+            fontFamily: 'monospace',
+            padding: '1rem',
+            backgroundColor: '#f5f5f5',
+            borderRadius: '0.375rem',
+            overflow: 'auto',
+          }}
+        >
+          {value}
+        </pre>
+      </noscript>
       <Tooltip
         id='epochTip'
         delayShow={0}

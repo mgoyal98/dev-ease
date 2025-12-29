@@ -28,6 +28,21 @@ export const metadata: Metadata = {
   description: appConfig.description,
   keywords: appConfig.keywords,
   creator: appConfig.creator,
+  metadataBase: new URL(appConfig.url),
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
     images: [{ url: ogImage.src, width: 1200, height: 640 }],
     type: 'website',
