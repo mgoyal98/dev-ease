@@ -1,6 +1,12 @@
 import { appConfig, navCategories } from '@/common/constants';
 import { getCategoryById, getNavItemsByCategory } from '@/common/utils';
+import {
+  buildItemListJsonLd,
+  buildPageMetadata,
+} from '@/common/utils/seo.util';
+import Breadcrumb from '@/components/breadcrumb';
 import Content from '@/components/content';
+import JsonLd from '@/components/json-ld';
 import PageTitle from '@/components/page-title';
 import ToolCard from '@/components/tool-card';
 import { notFound } from 'next/navigation';
@@ -13,17 +19,38 @@ interface CategoryPageProps {
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { categoryId } = await params;
   const data = getCategoryById(categoryId);
-  if (!data) {
+  if (!data || !data.visibleOnSidebar) {
     notFound();
   }
+
+  const tools = getNavItemsByCategory(categoryId);
+
   return (
     <Content>
+      <Breadcrumb
+        crumbs={[
+          { name: 'Home', path: '/' },
+          { name: data.name, path: data.route },
+        ]}
+      />
       <PageTitle title={data.name} description={data.description} />
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
-        {getNavItemsByCategory(categoryId).map((tool) => (
+        {tools.map((tool) => (
           <ToolCard key={tool.id} {...tool} />
         ))}
       </div>
+      <JsonLd
+        id={`ld-category-${data.id}`}
+        data={buildItemListJsonLd(
+          tools
+            .filter((tool) => tool.route)
+            .map((tool) => ({
+              name: tool.pageTitle,
+              description: tool.description,
+              path: tool.route as string,
+            }))
+        )}
+      />
     </Content>
   );
 }
@@ -33,8 +60,7 @@ export async function generateMetadata({ params }: CategoryPageProps) {
 
   const categoryData = getCategoryById(categoryId);
 
-  // Check if the category is valid
-  if (!categoryData) {
+  if (!categoryData || !categoryData.visibleOnSidebar) {
     return {
       title: 'Category Not Found',
       description: 'The specified category could not be located.',
@@ -42,54 +68,32 @@ export async function generateMetadata({ params }: CategoryPageProps) {
     };
   }
 
-  const canonicalUrl = `${appConfig.url}/${categoryId}`;
+  const tools = getNavItemsByCategory(categoryId);
+  const toolNames = tools.map((tool) => tool.pageTitle);
 
-  // Metadata based on the category
-  return {
-    title: `${categoryData.name} | ${appConfig.name}`,
-    description: categoryData.description,
-    applicationName: appConfig.name,
+  return buildPageMetadata({
+    title: `${categoryData.name} - Free Online Tools`,
+    description: `${categoryData.description} Includes ${toolNames.join(
+      ', '
+    )} — free, no signup, and everything runs in your browser.`,
+    path: categoryData.route,
     keywords: [
-      ...getNavItemsByCategory(categoryId).map(
-        (tool) => `${tool.id} ${categoryId}`
-      ),
+      categoryData.name.toLowerCase(),
+      ...tools.flatMap((tool) => tool.keywords?.slice(0, 3) ?? [tool.name]),
     ],
-    creator: appConfig.creator,
-    alternates: {
-      canonical: canonicalUrl,
+    ogImage: {
+      url: ogImage.src,
+      width: 1280,
+      height: 640,
+      alt: appConfig.pageTitle,
     },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
-    openGraph: {
-      images: [{ url: ogImage.src, width: 1200, height: 640 }],
-      type: 'website',
-      siteName: appConfig.name,
-      title: `${categoryData.name} | ${appConfig.name}`,
-      description: categoryData.description,
-      url: canonicalUrl,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      site: 'devease.app',
-      creator: '@mgoyal98',
-      images: [{ url: ogImage.src, width: 1200, height: 640 }],
-      title: `${categoryData.name} | ${appConfig.name}`,
-      description: categoryData.description,
-    },
-  };
+  });
 }
 
 export async function generateStaticParams() {
-  const categories = Object.keys(navCategories);
+  const categories = Object.values(navCategories)
+    .filter((category) => category.visibleOnSidebar)
+    .map((category) => ({ categoryId: category.id }));
 
-  return categories.map((category) => ({ categoryId: category }));
+  return categories;
 }

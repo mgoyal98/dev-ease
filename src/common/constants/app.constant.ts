@@ -1,13 +1,19 @@
 export const appConfig = {
   name: 'DevEase',
-  pageTitle: 'DevEase - Your Go-To Toolbox for All Things Tech',
+  pageTitle: 'DevEase - Free Online Developer Tools',
+  tagline: 'Your Go-To Toolbox for All Things Tech',
   firstName: 'Dev',
   lastName: 'Ease',
   description:
-    'DevEase is a comprehensive toolkit for tech professionals, offering a range of utilities across four key categories: Generators, Converters, Encoder/Decoder, and Formatters. Simplify tasks like UUID creation, JSON-to-CSV conversion, Base64 encoding, JWT handling, and more, boosting your workflow with powerful, easy-to-use tools.',
+    'DevEase is a free, open-source toolbox of online developer utilities: JSON and SQL formatters, Base64, JWT and URL encoders/decoders, UUID and password generators, epoch and YAML-JSON converters, a regex tester, JSON compare, and live HTML and Markdown previews. Every tool runs entirely in your browser, so your data never leaves your device.',
   url: 'https://devease.app',
   keywords:
-    'tech tools, development, tools, ease, ease development, ease tools, uuid, json, csv, base64, jwt, epoch, Generators, Converters, Encoder/Decoder, Formatters, developer tools, data tools, tech utilities, productivity tools, workflow optimization, data handling, API tools, software development',
+    'developer tools, free online developer tools, dev tools, json formatter, sql formatter, base64 encoder, base64 decoder, jwt decoder, url encoder, uuid generator, password generator, epoch converter, yaml to json, json to csv, regex tester, json compare, html preview, markdown preview, web developer utilities, programmer tools, online dev toolbox',
   creator: 'Madhur Goyal',
-  manifestDescription: 'DevEase is a comprehensive toolkit for tech professionals, offering utilities for UUID creation, JSON-to-CSV conversion, Base64 encoding, JWT handling, and more, streamlining workflows across multiple tasks.',
+  creatorUrl: 'https://mgoyal.com',
+  twitterHandle: '@mgoyal98',
+  githubUrl: 'https://github.com/mgoyal98/dev-ease',
+  linkedinUrl: 'https://www.linkedin.com/in/madhur-goyal/',
+  manifestDescription:
+    'DevEase is a free, open-source toolbox of online developer utilities for formatting, converting, encoding, generating, and previewing data — all running entirely in your browser.',
 };

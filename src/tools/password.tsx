@@ -92,9 +92,11 @@ export default function PasswordGeneratorTool() {
   const generatePassword = (length: number, pool: string) => {
     let password = '';
     const poolLength = pool.length;
+    const randomValues = new Uint32Array(length);
+    crypto.getRandomValues(randomValues);
 
     for (let i = 0; i < length; i++) {
-      password += pool.charAt(Math.floor(Math.random() * poolLength));
+      password += pool.charAt(randomValues[i] % poolLength);
     }
 
     return password;

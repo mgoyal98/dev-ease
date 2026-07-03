@@ -1,9 +1,20 @@
-import { appConfig, navItems } from '@/common/constants';
-import { getNavItemByCategoryAndTool, getNavItemById } from '@/common/utils';
+import { navItems, toolSeoContent } from '@/common/constants';
+import {
+  getCategoryById,
+  getNavItemByCategoryAndTool,
+  getNavItemById,
+} from '@/common/utils';
+import {
+  buildFaqJsonLd,
+  buildPageMetadata,
+  buildToolAppJsonLd,
+} from '@/common/utils/seo.util';
+import Breadcrumb from '@/components/breadcrumb';
 import Content from '@/components/content';
+import JsonLd from '@/components/json-ld';
 import ToolPageTitle from '@/components/tool-page-title';
+import ToolSeoContent from '@/components/tool-seo-content';
 import { notFound } from 'next/navigation';
-import ogImage from '@/app/cover.png';
 
 interface ToolPageProps {
   params: Promise<{ categoryId: string; toolId: string }>;
@@ -13,11 +24,22 @@ export default async function ToolPage({ params }: ToolPageProps) {
   const { categoryId, toolId } = await params;
 
   const data = getNavItemByCategoryAndTool(categoryId, toolId);
-  if (!data) {
+  const category = getCategoryById(categoryId);
+  if (!data || !category) {
     notFound();
   }
+
+  const seoContent = toolSeoContent[data.id];
+
   return (
     <Content>
+      <Breadcrumb
+        crumbs={[
+          { name: 'Home', path: '/' },
+          { name: category.name, path: category.route },
+          { name: data.pageTitle, path: data.route ?? '/' },
+        ]}
+      />
       <ToolPageTitle
         toolId={data.id}
         title={data.pageTitle}
@@ -25,6 +47,21 @@ export default async function ToolPage({ params }: ToolPageProps) {
       />
 
       {data.page && <data.page />}
+
+      {seoContent && (
+        <ToolSeoContent title={data.pageTitle} content={seoContent} />
+      )}
+
+      <JsonLd
+        id={`ld-tool-${data.id}`}
+        data={buildToolAppJsonLd(data, seoContent?.features)}
+      />
+      {seoContent && seoContent.faqs.length > 0 && (
+        <JsonLd
+          id={`ld-faq-${data.id}`}
+          data={buildFaqJsonLd(seoContent.faqs)}
+        />
+      )}
     </Content>
   );
 }
@@ -34,54 +71,21 @@ export async function generateMetadata({ params }: ToolPageProps) {
 
   const tool = getNavItemById(toolId);
 
-  // Check if the category is valid
-  if (!tool) {
+  if (!tool || !tool.route) {
     return {
       title: 'Tool Not Found',
       description: 'The specified tool could not be located.',
     };
   }
 
-  const canonicalUrl = `${appConfig.url}/${tool.category}/${tool.id}`;
-
-  // Metadata based on the category
-  return {
-    title: `${tool.pageTitle} | ${appConfig.name}`,
+  // No ogImage here: the file-convention opengraph-image.tsx in this route
+  // segment generates a per-tool social image.
+  return buildPageMetadata({
+    title: tool.pageTitle,
     description: tool.description,
-    applicationName: appConfig.name,
+    path: tool.route,
     keywords: tool.keywords,
-    creator: appConfig.creator,
-    alternates: {
-      canonical: canonicalUrl,
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
-    openGraph: {
-      images: [{ url: ogImage.src, width: 1200, height: 640 }],
-      type: 'website',
-      siteName: appConfig.name,
-      title: `${tool.pageTitle} | ${appConfig.name}`,
-      description: tool.description,
-      url: canonicalUrl,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      site: 'devease.app',
-      creator: '@mgoyal98',
-      images: [{ url: ogImage.src, width: 1200, height: 640 }],
-      title: `${tool.pageTitle} | ${appConfig.name}`,
-      description: tool.description,
-    },
-  };
+  });
 }
 
 export async function generateStaticParams() {

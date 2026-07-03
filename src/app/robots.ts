@@ -1,3 +1,4 @@
+import { appConfig } from '@/common/constants';
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
@@ -9,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/_next/'],
       },
     ],
-    sitemap: 'https://devease.app/sitemap.xml',
+    sitemap: `${appConfig.url}/sitemap.xml`,
+    host: appConfig.url,
   };
 }
-

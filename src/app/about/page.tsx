@@ -1,23 +1,36 @@
 import { appConfig } from '@/common/constants';
 import { getNavItemById } from '@/common/utils';
+import { buildPageMetadata } from '@/common/utils/seo.util';
+import Breadcrumb from '@/components/breadcrumb';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/card';
 import Content from '@/components/content';
 import ExternalLink from '@/components/external-link';
 import PageTitle from '@/components/page-title';
 import { Metadata } from 'next';
+import ogImage from '@/app/cover.png';
 
-const aboutPage = getNavItemById('about');
-
-export const metadata: Metadata = {
-  title: aboutPage?.pageTitle ?? 'About',
-  description: aboutPage?.description ?? 'About the website',
-  applicationName: appConfig.name,
-  keywords: aboutPage?.keywords,
-};
+export const metadata: Metadata = buildPageMetadata({
+  title: 'About',
+  description: `${appConfig.name} is a free, open-source collection of online developer tools built by ${appConfig.creator}. Learn about the project, its tech stack, and how to contribute or request new tools.`,
+  path: '/about',
+  keywords: getNavItemById('about')?.keywords,
+  ogImage: {
+    url: ogImage.src,
+    width: 1280,
+    height: 640,
+    alt: appConfig.pageTitle,
+  },
+});
 
 export default function AboutPage() {
   return (
     <Content>
+      <Breadcrumb
+        crumbs={[
+          { name: 'Home', path: '/' },
+          { name: 'About', path: '/about' },
+        ]}
+      />
       <PageTitle title='About' />
 
       <Card className='mb-4'>
